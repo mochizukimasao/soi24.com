@@ -1,0 +1,13 @@
+{
+  "name": "soi24",
+  "version": "1.0.0",
+  "description": "Retro-Future Experiments from Bangkok",
+  "scripts": {
+    "start": "node start-server.js",
+    "preview": "node start-server.js"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+
