@@ -6,7 +6,7 @@
   <title>soi24 | Retro-Future Experiments</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;900&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;900&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <style>
     :root {
@@ -24,7 +24,7 @@
     }
     
     body {
-      font-family: 'Poppins', 'Quicksand', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
       line-height: 1.8;
       font-weight: 300;
       background: radial-gradient(ellipse at top, rgba(255, 110, 199, 0.15), transparent 50%),
@@ -112,7 +112,7 @@
     }
     
     .loading-logo {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-size: 2.5rem;
       font-weight: 600;
       background: linear-gradient(135deg, #ff6ec7, #c8a2d8, #a8e6cf);
@@ -133,7 +133,7 @@
     }
     
     .loading-text {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.6);
       letter-spacing: 0.1em;
@@ -210,11 +210,11 @@
       font-weight: 400;
     }
     
-    /* 丸みを帯びたサンセリフ: UI要素や本文に */
+    /* 丸みを帯びたサンセリフ: UI要素に */
     .font-gothic {
-      font-family: 'Poppins', 'Quicksand', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      letter-spacing: 0.01em;
-      font-weight: 300;
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
+      letter-spacing: 0.04em;
+      font-weight: 400;
     }
     
     /* モノスペース: ラベルやタグ、数字に */
@@ -247,12 +247,20 @@
       letter-spacing: 0.01em;
     }
     
-    /* 本文は丸みを帯びたサンセリフで */
-    p {
+    /* プロジェクト説明の日本語はサンセリフに戻す */
+    .project-description {
       font-family: 'Poppins', 'Quicksand', sans-serif;
       letter-spacing: 0.02em;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    /* 本文は明朝体で統一 */
+    p {
+      font-family: 'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      letter-spacing: 0.08em;
       line-height: 1.9;
-      font-weight: 300;
+      font-weight: 400;
     }
     
     #hero {
@@ -266,11 +274,11 @@
       width: 100%;
     }
     
-    /* ナビゲーションは洗練されたサンセリフで */
+    /* ナビゲーションはタイトルと同じ丸サンセリフで */
     nav {
-      font-family: 'Poppins', 'Quicksand', sans-serif;
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 400;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
     }
     
     /* モバイルメニューボタン */
@@ -402,11 +410,11 @@
       letter-spacing: 0.08em;
     }
     
-    /* ボタンは丸みを帯びたサンセリフで */
+    /* ボタンもタイトルフォントでエッジを揃える */
     button, a.btn-glow {
-      font-family: 'Poppins', 'Quicksand', sans-serif;
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 500;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.05em;
     }
     .project-card::after {
       content: '';
@@ -531,6 +539,30 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    .hero-title {
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      background: linear-gradient(135deg, 
+        rgba(255, 110, 199, 1), 
+        rgba(200, 162, 216, 1), 
+        rgba(168, 230, 207, 1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 10px 30px rgba(10, 10, 20, 0.45);
+    }
+
+    .hero-tagline {
+      font-family: 'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      font-feature-settings: 'palt' 1;
+      display: inline-block;
+    }
     
     .steampunk-badge {
       position: relative;
@@ -546,7 +578,7 @@
         inset 0 0 15px rgba(255, 110, 199, 0.2),
         0 0 20px rgba(255, 110, 199, 0.3),
         0 4px 15px rgba(200, 162, 216, 0.2);
-      font-family: 'Poppins', 'Quicksand', sans-serif;
+      font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -694,11 +726,11 @@
         <div>
           <p class="font-mono text-xs tracking-[0.5em] uppercase mb-6 font-medium intro-reveal" style="color: #ff6ec7;">soi24.com</p>
           <h1 class="mb-8">
-            <span class="block mb-3 comic-text intro-reveal" style="font-size: clamp(2rem, 5vw, 3.5rem);">Retro Future Studio</span>
-            <span class="block mt-2 intro-reveal" style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-family: 'Poppins', 'Quicksand', sans-serif; color: #a8e6cf;">Small Web Tools, AI-Assisted Development</span>
+            <span class="block mb-3 hero-title intro-reveal" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">Retro Future Studio</span>
+            <span class="block mt-2 intro-reveal" style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif; color: #a8e6cf; letter-spacing: 0.08em;">Small Web Tools, AI-Assisted Development</span>
           </h1>
           <p class="max-w-3xl mx-auto leading-relaxed text-base md:text-lg tracking-wide mt-8 intro-reveal" style="color: rgba(255, 255, 255, 0.8);">
-            一瞬のひらめきが息づきはじめる。AI と紡いで、そっとカタチへ。
+            <span class="hero-tagline">一瞬のひらめきが息づきはじめる。AI と紡いで、そっとカタチへ。</span>
           </p>
         </div>
       </section>
@@ -725,7 +757,7 @@
                   <h3 class="text-2xl comic-text">Easy Ecomap JP</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">無料でオンライン上でエコマップを作成できるWebツール。ソーシャルワーカーや支援職の方々が、クライアントの環境を視覚化するための直感的なインターフェースを提供。</p>
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">無料でオンライン上でエコマップを作成できるWebツール。ソーシャルワーカーや支援職の方々が、クライアントの環境を視覚化するための直感的なインターフェースを提供。</p>
                   <a href="https://ecomap.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(255, 110, 199, 0.6); color: #ff6ec7;" onmouseover="this.style.background='rgba(255, 110, 199, 0.1)'" onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #ff6ec7;">→</span>
@@ -743,7 +775,7 @@
                   <h3 class="text-2xl comic-text">Easy Genogram JP</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">無料で簡単に家系図を作成できるWebツール。家族関係を視覚的に表現し、保存・読み込み機能で継続的な記録管理をサポート。</p>
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">無料で簡単に家系図を作成できるWebツール。家族関係を視覚的に表現し、保存・読み込み機能で継続的な記録管理をサポート。</p>
                   <a href="https://genogram.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(200, 162, 216, 0.6); color: #c8a2d8;" onmouseover="this.style.background='rgba(200, 162, 216, 0.1)'" onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #c8a2d8;">→</span>
@@ -761,7 +793,7 @@
                   <h3 class="text-2xl comic-text">BF Calc</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">bitFlyer の取引手数料を瞬時に計算できる軽量ツール。金額と BTC 数量を入力するだけで、手数料差引後の受取額を算出し、リアルタイム価格とコピー機能で素早い転記にも対応。</p>
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">bitFlyer の取引手数料を瞬時に計算できる軽量ツール。金額と BTC 数量を入力するだけで、手数料差引後の受取額を算出し、リアルタイム価格とコピー機能で素早い転記にも対応。</p>
                   <a href="https://bfcalc.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(110, 207, 246, 0.6); color: #6ecff6;" onmouseover="this.style.background='rgba(110, 207, 246, 0.1)'" onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #6ecff6;">→</span>
@@ -779,7 +811,7 @@
                   <h3 class="text-2xl comic-text">Machinohiroba.com</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">NPO法人街のひろばの公式サイト。埼玉県三芳町の学習支援・居場所づくりを提供する無料学習支援教室の情報を発信するWebサイト。</p>
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">NPO法人街のひろばの公式サイト。埼玉県三芳町の学習支援・居場所づくりを提供する無料学習支援教室の情報を発信するWebサイト。</p>
                   <a href="https://machinohiroba.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(168, 230, 207, 0.6); color: #a8e6cf;" onmouseover="this.style.background='rgba(168, 230, 207, 0.1)'" onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #a8e6cf;">→</span>
