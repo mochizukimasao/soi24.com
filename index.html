@@ -20,6 +20,7 @@
       --purple: #ba55d3;
       --bg-dark: #0a0a12;
       --bg-glass: rgba(255, 255, 255, 0.05);
+      --bg-parallax-offset: 0px;
     }
     
     body {
@@ -44,7 +45,7 @@
         linear-gradient(180deg, rgba(3, 8, 18, 0.6), rgba(5, 10, 22, 0.55)),
         url('./img/background.png');
       background-repeat: no-repeat, no-repeat, no-repeat;
-      background-position: center, center, center;
+      background-position: center center, center center, center calc(50% + var(--bg-parallax-offset, 0px));
       background-size: auto, auto, cover;
       z-index: -1;
       transform: translateZ(0);
@@ -270,6 +271,128 @@
       font-family: 'Poppins', 'Quicksand', sans-serif;
       font-weight: 400;
       letter-spacing: 0.03em;
+    }
+    
+    /* モバイルメニューボタン */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 100;
+    }
+    
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease-out;
+      border-radius: 2px;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    
+    /* モバイルメニュー */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 10, 18, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 99;
+      padding-top: 80px;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+    
+    .mobile-menu.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .mobile-menu nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+      align-items: flex-start;
+    }
+    
+    .mobile-menu nav a {
+      font-size: 1.25rem;
+      padding: 0.5rem 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 110, 199, 0.2);
+    }
+    
+    /* デスクトップでは通常のナビゲーションを表示、モバイルでは非表示 */
+    .desktop-nav {
+      display: flex;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none !important;
+      }
+      
+      .menu-toggle {
+        display: flex !important;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .mobile-menu {
+        display: none !important;
+      }
+      
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+    
+    /* ヘッダーのスタイル（フッターと同じデザイン） */
+    header {
+      position: relative;
+      padding-bottom: 0.75rem !important;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-out;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    header.header-hidden {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    
+    header.semi-transparent {
+      opacity: 0.5;
+    }
+    
+    header:hover {
+      opacity: 1 !important;
     }
     
     /* ラベルやタグはモノスペースで */
@@ -540,19 +663,33 @@
   <div class="scanlines"></div>
   
   <div class="relative min-h-screen overflow-hidden">
-    <header class="fixed top-0 left-0 right-0 z-50 max-w-6xl mx-auto px-6 pt-4 pb-4 flex items-center justify-between" style="background: transparent;">
+    <header class="fixed top-0 left-0 right-0 z-50 w-full px-6 pt-2.5 pb-2.5 flex items-center justify-between" style="background: rgba(10, 10, 18, 0.75); border-bottom: 1px solid rgba(255, 110, 199, 0.2);">
       <div class="flex flex-col">
         <span class="font-gothic text-xs uppercase tracking-[0.4em] font-medium" style="color: #ff6ec7;">soi24</span>
         <span class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.9);">Retro-Future Studio</span>
       </div>
-      <nav class="font-gothic flex gap-6 text-sm font-medium">
+      <nav class="desktop-nav font-gothic flex gap-6 text-sm font-medium">
         <a href="#projects" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#ff6ec7'; this.style.textShadow='0 0 15px rgba(255, 110, 199, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Projects</a>
         <a href="#about" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#c8a2d8'; this.style.textShadow='0 0 15px rgba(200, 162, 216, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">About</a>
         <a href="#contact" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#a8e6cf'; this.style.textShadow='0 0 15px rgba(168, 230, 207, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Contact</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
+    
+    <!-- モバイルメニュー -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="font-gothic">
+        <a href="#projects" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">Projects</a>
+        <a href="#about" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">About</a>
+        <a href="#contact" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">Contact</a>
+      </nav>
+    </div>
 
-    <main class="relative z-10 px-6" style="padding-top: 80px;">
+    <main class="relative z-10 px-6" style="padding-top: 70px;">
       <section class="max-w-5xl mx-auto pt-20 pb-24 text-center" id="hero">
         <div>
           <p class="font-mono text-xs tracking-[0.5em] uppercase mb-6 font-medium intro-reveal" style="color: #ff6ec7;">soi24.com</p>
@@ -783,6 +920,152 @@
         setTimeout(initUnifiedObserver, 100);
       }
       
+
+      // 擬似パララックス用の背景制御
+      const initParallaxBackground = () => {
+        const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const mobileQuery = window.matchMedia('(max-width: 640px)');
+        const root = document.documentElement;
+        const parallaxFactor = 0.2;
+        let scrollHandler = null;
+        let ticking = false;
+        let lastKnownScrollY = window.scrollY;
+        
+        const updateParallax = () => {
+          const offset = lastKnownScrollY * parallaxFactor;
+          root.style.setProperty('--bg-parallax-offset', `${offset}px`);
+          ticking = false;
+        };
+        
+        const enableParallax = () => {
+          if (scrollHandler) return;
+          updateParallax();
+          scrollHandler = () => {
+            lastKnownScrollY = window.scrollY;
+            if (!ticking) {
+              requestAnimationFrame(updateParallax);
+              ticking = true;
+            }
+          };
+          window.addEventListener('scroll', scrollHandler, { passive: true });
+        };
+        
+        const disableParallax = () => {
+          if (scrollHandler) {
+            window.removeEventListener('scroll', scrollHandler);
+            scrollHandler = null;
+          }
+          ticking = false;
+          root.style.setProperty('--bg-parallax-offset', '0px');
+        };
+        
+        const handleParallaxState = () => {
+          if (prefersReducedMotionQuery.matches || mobileQuery.matches) {
+            disableParallax();
+          } else {
+            enableParallax();
+          }
+        };
+        
+        prefersReducedMotionQuery.addEventListener('change', handleParallaxState);
+        mobileQuery.addEventListener('change', handleParallaxState);
+        handleParallaxState();
+      };
+      
+      initParallaxBackground();
+
+      // ヘッダーのスクロールフェード制御
+      const initHeaderScrollFade = () => {
+        const header = document.querySelector('header');
+        if (!header) return;
+        
+        const idleDelay = 2000; // スクロール停止後2秒で再表示
+        let idleTimer = null;
+        let isHidden = false;
+        
+        const showHeader = () => {
+          header.classList.remove('header-hidden');
+          header.classList.remove('semi-transparent');
+          isHidden = false;
+        };
+        
+        const hideHeader = () => {
+          if (window.scrollY < 20) {
+            showHeader();
+            return;
+          }
+          header.classList.add('header-hidden');
+          header.classList.remove('semi-transparent');
+          isHidden = true;
+        };
+        
+        const scheduleShow = () => {
+          if (idleTimer) {
+            clearTimeout(idleTimer);
+          }
+          idleTimer = setTimeout(() => {
+            showHeader();
+          }, idleDelay);
+        };
+        
+        const handleScroll = () => {
+          hideHeader();
+          scheduleShow();
+        };
+        
+        header.addEventListener('mouseenter', () => {
+          showHeader();
+          scheduleShow();
+        });
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // 初期状態は表示しつつ、スクロール停止後の再表示を予約
+        scheduleShow();
+      };
+      
+      initHeaderScrollFade();
+
+      // モバイルメニューの開閉機能
+      const initMobileMenu = () => {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (!menuToggle || !mobileMenu) return;
+        
+        const toggleMenu = () => {
+          const isActive = mobileMenu.classList.contains('active');
+          if (isActive) {
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+          } else {
+            mobileMenu.classList.add('active');
+            menuToggle.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        };
+        
+        const closeMenu = () => {
+          mobileMenu.classList.remove('active');
+          menuToggle.classList.remove('active');
+          document.body.style.overflow = '';
+        };
+        
+        menuToggle.addEventListener('click', toggleMenu);
+        
+        // メニュー外をクリックで閉じる
+        mobileMenu.addEventListener('click', (e) => {
+          if (e.target === mobileMenu) {
+            closeMenu();
+          }
+        });
+        
+        // グローバル関数として定義（onclickから呼び出せるように）
+        window.closeMobileMenu = closeMenu;
+      };
+      
+      initMobileMenu();
 
       // ローディング画面の管理（一時的に無効化 - デザインは保持）
       /*
