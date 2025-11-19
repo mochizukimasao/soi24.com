@@ -55,3 +55,36 @@ php -S localhost:3000
 
 サーバーを停止するには、ターミナルで `Ctrl + C` を押してください。
 
+## デプロイ
+
+このプロジェクトはGitHub Pagesでホスティングされています。
+
+### デプロイ手順
+
+1. **変更をコミット**
+   ```bash
+   git add .
+   git commit -m "Update site"
+   ```
+
+2. **GitHubにプッシュ**
+   ```bash
+   git push origin main
+   ```
+
+3. **GitHub Pagesの設定**
+   - GitHubリポジトリのページにアクセス
+   - Settings → Pages に移動
+   - Source を "Deploy from a branch" に設定
+   - Branch を "main" に設定
+   - Folder を "/ (root)" に設定
+   - Save をクリック
+
+4. **デプロイの確認**
+   - 数分後に `https://mochizukimasao.github.io/soi24.com/` でサイトが公開されます
+   - または、カスタムドメインが設定されている場合は、そのドメインでアクセス可能です
+
+### 自動デプロイ
+
+GitHub Pagesは、`main` ブランチにプッシュするたびに自動的にデプロイされます。デプロイには通常1-2分かかります。
+
