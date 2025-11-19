@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;900&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <style>
-    /* ヘルタースケルター風カラーパレット */
     :root {
       --pink-neon: #ff6ec7;
       --pink-pastel: #ffb3d9;
@@ -23,7 +22,6 @@
       --bg-glass: rgba(255, 255, 255, 0.05);
     }
     
-    /* ベースフォント: 丸みを帯びた洗練されたサンセリフ */
     body {
       font-family: 'Poppins', 'Quicksand', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       line-height: 1.8;
@@ -31,8 +29,23 @@
       background: radial-gradient(ellipse at top, rgba(255, 110, 199, 0.15), transparent 50%),
                   radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
                   radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
+                  url('./img/background.png') center/cover,
                   linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
-      background-attachment: fixed;
+      background-attachment: scroll;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        linear-gradient(135deg, rgba(10, 20, 40, 0.45), rgba(15, 25, 45, 0.4)),
+        linear-gradient(180deg, rgba(5, 15, 30, 0.5), rgba(8, 18, 35, 0.45)),
+        url('./img/background.jpg') center/cover;
+      z-index: -1;
+      transform: translateZ(0);
     }
     
     /* 明朝体: エレガントな要素に */
@@ -107,25 +120,13 @@
       font-weight: 500;
       letter-spacing: 0.02em;
     }
-    .neon-pulse::before {
-      content: '';
-      position: absolute;
-      inset: -20%;
-      background: radial-gradient(circle, rgba(255, 110, 199, 0.15), rgba(200, 162, 216, 0.1), rgba(168, 230, 207, 0.08), transparent 60%);
-      filter: blur(60px);
-      animation: pulse 12s ease-in-out infinite;
-      opacity: 0.5;
-      pointer-events: none;
-      will-change: transform, opacity;
-      transform: translateZ(0);
-    }
     .project-card::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(255, 110, 199, 0.3), rgba(200, 162, 216, 0.25), rgba(168, 230, 207, 0.2), rgba(255, 217, 61, 0.15));
       opacity: 0;
-      transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 300ms ease-out;
       pointer-events: none;
       border-radius: 1.5rem;
     }
@@ -136,39 +137,26 @@
       box-shadow: 0 0 25px rgba(255, 110, 199, 0.5), 
                   0 0 50px rgba(200, 162, 216, 0.3),
                   0 4px 20px rgba(255, 110, 199, 0.2);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease-out;
     }
     .btn-glow:hover {
       box-shadow: 0 0 30px rgba(255, 110, 199, 0.6), 
                   0 0 60px rgba(200, 162, 216, 0.4),
                   0 6px 25px rgba(255, 110, 199, 0.25);
-      transform: translateY(-2px) translateZ(0);
+      transform: translateY(-2px);
     }
     .fade-ready {
       opacity: 0;
-      transform: translateY(24px) translateZ(0);
-      will-change: opacity, transform;
+      transform: translateY(24px);
     }
     .fade-visible {
       opacity: 1;
-      transform: translateY(0) translateZ(0);
+      transform: translateY(0);
       transition: opacity 700ms ease-out, transform 700ms ease-out;
-      will-change: auto;
-    }
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(0.98) translateZ(0);
-        opacity: 0.5;
-      }
-      50% {
-        transform: scale(1.02) translateZ(0);
-        opacity: 0.7;
-      }
     }
     
     /* レトロフューチャー要素 */
     
-    /* ソフトなスキャンライン効果 */
     .scanlines {
       position: fixed;
       top: 0;
@@ -185,28 +173,10 @@
       pointer-events: none;
       z-index: 1000;
       opacity: 0.3;
-      will-change: auto;
-      transform: translateZ(0);
     }
     
-    /* ポップなドットパターン */
-    .pixel-pattern {
-      background-image: 
-        radial-gradient(circle at 2px 2px, rgba(255, 110, 199, 0.08) 1px, transparent 0);
-      background-size: 30px 30px;
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.4;
-      will-change: auto;
-      transform: translateZ(0);
-    }
-    
-    /* ポップなネオンサイン */
     .neon-blink {
       animation: neonBlink 3s ease-in-out infinite;
-      will-change: opacity, text-shadow;
     }
     
     @keyframes neonBlink {
@@ -225,7 +195,6 @@
     
     .neon-blink-cyan {
       animation: neonBlinkCyan 3.5s ease-in-out infinite;
-      will-change: opacity, text-shadow;
     }
     
     @keyframes neonBlinkCyan {
@@ -242,7 +211,6 @@
       }
     }
     
-    /* ソフトなグリッド */
     .mechanical-grid {
       position: fixed;
       inset: 0;
@@ -253,8 +221,6 @@
       pointer-events: none;
       z-index: 0;
       opacity: 0.3;
-      will-change: auto;
-      transform: translateZ(0);
     }
     
     /* ドット絵風の装飾要素 */
@@ -264,7 +230,6 @@
       image-rendering: crisp-edges;
     }
     
-    /* ポップなボーダー */
     .retro-border {
       border: 2px solid;
       border-image: linear-gradient(135deg, rgba(255, 110, 199, 0.6), rgba(200, 162, 216, 0.5), rgba(168, 230, 207, 0.4)) 1;
@@ -274,7 +239,6 @@
       border-radius: 1.5rem;
     }
     
-    /* ポップな点滅ドット */
     .blinking-dot {
       display: inline-block;
       width: 10px;
@@ -284,81 +248,44 @@
       animation: dotBlink 1.5s ease-in-out infinite;
       box-shadow: 0 0 12px rgba(255, 110, 199, 0.7),
                   0 0 24px rgba(200, 162, 216, 0.3);
-      will-change: transform, opacity;
-      transform: translateZ(0);
     }
     
     @keyframes dotBlink {
       0%, 100% { 
         opacity: 1; 
-        transform: scale(1) translateZ(0);
+        transform: scale(1);
       }
       50% { 
         opacity: 0.5; 
-        transform: scale(0.85) translateZ(0);
+        transform: scale(0.85);
       }
     }
     
-    /* グラスモーフィズム風のフレーム */
     .arcade-frame {
       position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      will-change: transform;
-      transform: translateZ(0);
+      background: rgba(10, 10, 18, 0.7);
+      backdrop-filter: blur(12px);
     }
     
     .arcade-frame::before {
       content: '';
       position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
       background: linear-gradient(135deg, 
         rgba(255, 110, 199, 0.4), 
         rgba(200, 162, 216, 0.3), 
         rgba(168, 230, 207, 0.2));
       border-radius: 1.5rem;
       z-index: -1;
-      animation: frameGlow 4s ease-in-out infinite;
-      opacity: 0.6;
-      filter: blur(6px);
-      will-change: transform, opacity;
-      transform: translateZ(0);
-    }
-    
-    .arcade-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 2px solid transparent;
-      border-radius: 1.5rem;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.3), 
-        rgba(200, 162, 216, 0.25), 
-        rgba(168, 230, 207, 0.2)) padding-box,
-        linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.6), 
-        rgba(200, 162, 216, 0.5), 
-        rgba(168, 230, 207, 0.4)) border-box;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-    
-    @keyframes frameGlow {
-      0%, 100% { 
-        opacity: 0.6; 
-        transform: scale(1) translateZ(0);
-      }
-      50% { 
-        opacity: 0.9; 
-        transform: scale(1.01) translateZ(0);
-      }
+      opacity: 0.5;
+      filter: blur(4px);
     }
     
     /* ポップなレトロフューチャー要素 */
     
-    /* 見出しスタイル（丸みを帯びたポップなフォント） */
     .comic-text {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 600;
@@ -375,7 +302,6 @@
       background-clip: text;
     }
     
-    /* ポップな装飾バッジ */
     .steampunk-badge {
       position: relative;
       display: inline-block;
@@ -395,8 +321,6 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 500;
-      will-change: transform;
-      transform: translateZ(0);
     }
     
     .steampunk-badge::before {
@@ -413,11 +337,11 @@
     @keyframes sparkle {
       0%, 100% { 
         opacity: 1; 
-        transform: translateY(-50%) scale(1) rotate(0deg) translateZ(0);
+        transform: translateY(-50%) scale(1) rotate(0deg);
       }
       50% { 
         opacity: 0.7; 
-        transform: translateY(-50%) scale(1.15) rotate(180deg) translateZ(0);
+        transform: translateY(-50%) scale(1.1) rotate(180deg);
       }
     }
     
@@ -439,11 +363,10 @@
     }
     
     @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0) translateZ(0); }
-      50% { transform: translateX(-50%) translateY(-8px) translateZ(0); }
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
     }
     
-    /* ポップな吹き出し */
     .comic-bubble {
       position: relative;
       padding: 1.2rem 1.8rem;
@@ -456,8 +379,6 @@
       box-shadow: 
         0 0 30px rgba(255, 110, 199, 0.4),
         inset 0 0 30px rgba(200, 162, 216, 0.15);
-      will-change: transform;
-      transform: translateZ(0);
     }
     
     .comic-bubble::after {
@@ -473,7 +394,6 @@
       filter: drop-shadow(0 0 15px rgba(255, 110, 199, 0.5));
     }
     
-    /* ソフトなパターン */
     .mechanical-pattern {
       background-image: 
         repeating-linear-gradient(45deg, 
@@ -484,32 +404,23 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.25;
-      will-change: auto;
-      transform: translateZ(0);
-    }
-    
-    /* ジャパニーズテキスト装飾 */
-    .japanese-accent {
-      position: relative;
-      display: inline-block;
+      opacity: 0.15;
     }
     
     .japanese-accent::before {
       content: '【';
-      color: rgba(255, 110, 199, 0.7);
+      color: rgba(255, 110, 199, 0.8);
       margin-right: 0.2em;
       text-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
     }
     
     .japanese-accent::after {
       content: '】';
-      color: rgba(255, 110, 199, 0.7);
+      color: rgba(255, 110, 199, 0.8);
       margin-left: 0.2em;
       text-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
     }
     
-    /* ポップなパネル */
     .comic-panel {
       position: relative;
       padding: 2rem;
@@ -522,38 +433,23 @@
       box-shadow: 
         0 0 40px rgba(255, 110, 199, 0.4),
         inset 0 0 40px rgba(200, 162, 216, 0.2);
-      will-change: transform;
-      transform: translateZ(0);
     }
     
     .comic-panel::before {
       content: '';
       position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
       background: linear-gradient(135deg, 
         rgba(255, 110, 199, 0.5),
         rgba(200, 162, 216, 0.4),
         rgba(168, 230, 207, 0.3));
       border-radius: 1.5rem;
       z-index: -1;
-      animation: panelGlow 5s ease-in-out infinite;
-      filter: blur(8px);
-      will-change: transform, opacity;
-      transform: translateZ(0);
-    }
-    
-    @keyframes panelGlow {
-      0%, 100% { 
-        opacity: 0.6; 
-        transform: scale(1) translateZ(0);
-      }
-      50% { 
-        opacity: 0.9; 
-        transform: scale(1.01) translateZ(0);
-      }
+      opacity: 0.5;
+      filter: blur(6px);
     }
   </style>
 </head>
@@ -562,14 +458,11 @@
   <div class="mechanical-grid"></div>
   <div class="scanlines"></div>
   
-  <div class="relative min-h-screen overflow-hidden" style="contain: layout style paint;">
-    <div class="absolute inset-0 neon-pulse"></div>
-    <div class="pixel-pattern"></div>
-    <div class="mechanical-pattern"></div>
+  <div class="relative min-h-screen overflow-hidden">
     <header class="relative z-10 max-w-6xl mx-auto px-6 pt-10 flex items-center justify-between">
       <div class="flex flex-col">
         <span class="font-gothic text-xs uppercase tracking-[0.4em] font-medium neon-blink" style="color: #ff6ec7;">soi24</span>
-        <span class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.7);">Retro-Future Studio</span>
+        <span class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.9);">Retro-Future Studio</span>
       </div>
       <nav class="font-gothic flex gap-6 text-sm font-medium">
         <a href="#projects" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#ff6ec7'; this.style.textShadow='0 0 15px rgba(255, 110, 199, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Projects</a>
@@ -599,12 +492,12 @@
               <p class="font-mono text-xs uppercase tracking-[0.5em] mb-4 font-medium steampunk-badge" style="color: #ff6ec7;">Projects</p>
               <h2 class="text-3xl md:text-4xl comic-text">Vibe Coding Arsenal</h2>
             </div>
-            <p class="md:max-w-xl leading-relaxed text-sm tracking-wide" style="color: rgba(255, 255, 255, 0.7);">
+            <p class="md:max-w-xl leading-relaxed text-sm tracking-wide" style="color: rgba(255, 255, 255, 0.9);">
               本サイトでは、AI と共に構築したプロトタイプやツール類を公開している。開発プロセスは明確性、機能的な十分性、不要な複雑化の回避を重視する。The development process emphasizes clarity, functional sufficiency, and avoidance of unnecessary complexity.
             </p>
           </div>
           <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(255, 110, 199, 0.2); background: rgba(255, 255, 255, 0.03); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);" onmouseover="this.style.borderColor='rgba(255, 110, 199, 0.5)'" onmouseout="this.style.borderColor='rgba(255, 110, 199, 0.2)'">
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(255, 110, 199, 0.2);" onmouseover="this.style.borderColor='rgba(255, 110, 199, 0.5)'" onmouseout="this.style.borderColor='rgba(255, 110, 199, 0.2)'">
               <div class="flex items-center justify-between mb-5">
                 <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
                 <span class="font-mono text-xs font-semibold tracking-wider" style="color: #ff6ec7;">01</span>
@@ -616,7 +509,7 @@
                 <span aria-hidden="true" class="inline-block font-mono" style="color: #ff6ec7;">→</span>
               </a>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(200, 162, 216, 0.2); background: rgba(255, 255, 255, 0.03); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);" onmouseover="this.style.borderColor='rgba(200, 162, 216, 0.5)'" onmouseout="this.style.borderColor='rgba(200, 162, 216, 0.2)'">
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(200, 162, 216, 0.2);" onmouseover="this.style.borderColor='rgba(200, 162, 216, 0.5)'" onmouseout="this.style.borderColor='rgba(200, 162, 216, 0.2)'">
               <div class="flex items-center justify-between mb-5">
                 <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
                 <span class="font-mono text-xs font-semibold tracking-wider" style="color: #c8a2d8;">02</span>
@@ -628,7 +521,7 @@
                 <span aria-hidden="true" class="inline-block font-mono" style="color: #c8a2d8;">→</span>
               </a>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(168, 230, 207, 0.2); background: rgba(255, 255, 255, 0.03); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);" onmouseover="this.style.borderColor='rgba(168, 230, 207, 0.5)'" onmouseout="this.style.borderColor='rgba(168, 230, 207, 0.2)'">
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(168, 230, 207, 0.2);" onmouseover="this.style.borderColor='rgba(168, 230, 207, 0.5)'" onmouseout="this.style.borderColor='rgba(168, 230, 207, 0.2)'">
               <div class="flex items-center justify-between mb-5">
                 <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Website</span>
                 <span class="font-mono text-xs font-semibold tracking-wider" style="color: #a8e6cf;">03</span>
