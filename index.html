@@ -29,7 +29,6 @@
       background: radial-gradient(ellipse at top, rgba(255, 110, 199, 0.15), transparent 50%),
                   radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
                   radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
-                  url('./img/background.png') center/cover,
                   linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
       background-attachment: scroll;
       min-height: 100vh;
@@ -38,14 +37,157 @@
     
     body::before {
       content: '';
-      position: fixed;
+      position: absolute;
       inset: 0;
       background: 
-        linear-gradient(135deg, rgba(10, 20, 40, 0.45), rgba(15, 25, 45, 0.4)),
-        linear-gradient(180deg, rgba(5, 15, 30, 0.5), rgba(8, 18, 35, 0.45)),
-        url('./img/background.jpg') center/cover;
+        linear-gradient(135deg, rgba(5, 12, 25, 0.55), rgba(8, 15, 28, 0.5)),
+        linear-gradient(180deg, rgba(3, 8, 18, 0.6), rgba(5, 10, 22, 0.55)),
+        url('./img/background.png') center/cover;
       z-index: -1;
       transform: translateZ(0);
+      opacity: 1;
+    }
+    
+    /* スクロールアニメーション用のスタイル */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      will-change: opacity, transform;
+    }
+    
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .intro-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+      will-change: opacity, transform;
+    }
+    
+    .intro-reveal.intro-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(255, 110, 199, 0.15), transparent 50%),
+                  radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
+                  radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
+                  linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.6s ease-out;
+    }
+    
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loading-content {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .loading-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff6ec7, #c8a2d8, #a8e6cf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+    
+    .loading-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+    
+    .loading-progress {
+      width: 300px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
+    }
+    
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6ec7, #c8a2d8, #a8e6cf);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.3s ease-out;
+      box-shadow: 0 0 20px rgba(255, 110, 199, 0.6);
+      animation: progressGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes progressGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 110, 199, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 110, 199, 0.9), 0 0 40px rgba(200, 162, 216, 0.5);
+      }
+    }
+    
+    .loading-percentage {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 1rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .loading-dots {
+      display: inline-block;
+      animation: loadingDots 1.5s steps(4, end) infinite;
+    }
+    
+    @keyframes loadingDots {
+      0%, 20% {
+        content: '';
+      }
+      40% {
+        content: '.';
+      }
+      60% {
+        content: '..';
+      }
+      80%, 100% {
+        content: '...';
+      }
+    }
+    
+    .loading-dots::after {
+      content: '';
+      animation: loadingDots 1.5s steps(4, end) infinite;
     }
     
     /* 明朝体: エレガントな要素に */
@@ -98,6 +240,17 @@
       letter-spacing: 0.02em;
       line-height: 1.9;
       font-weight: 300;
+    }
+    
+    #hero {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #hero > div {
+      width: 100%;
     }
     
     /* ナビゲーションは洗練されたサンセリフで */
@@ -175,42 +328,6 @@
       opacity: 0.3;
     }
     
-    .neon-blink {
-      animation: neonBlink 3s ease-in-out infinite;
-    }
-    
-    @keyframes neonBlink {
-      0%, 100% {
-        opacity: 1;
-        text-shadow: 0 0 20px rgba(255, 110, 199, 0.6), 
-                     0 0 40px rgba(255, 110, 199, 0.4), 
-                     0 0 60px rgba(255, 110, 199, 0.2);
-      }
-      50% {
-        opacity: 0.85;
-        text-shadow: 0 0 15px rgba(255, 110, 199, 0.4), 
-                     0 0 30px rgba(255, 110, 199, 0.3);
-      }
-    }
-    
-    .neon-blink-cyan {
-      animation: neonBlinkCyan 3.5s ease-in-out infinite;
-    }
-    
-    @keyframes neonBlinkCyan {
-      0%, 100% {
-        opacity: 1;
-        text-shadow: 0 0 20px rgba(168, 230, 207, 0.6), 
-                     0 0 40px rgba(168, 230, 207, 0.4), 
-                     0 0 60px rgba(110, 207, 246, 0.2);
-      }
-      50% {
-        opacity: 0.8;
-        text-shadow: 0 0 15px rgba(168, 230, 207, 0.4), 
-                     0 0 30px rgba(168, 230, 207, 0.3);
-      }
-    }
-    
     .mechanical-grid {
       position: fixed;
       inset: 0;
@@ -237,28 +354,6 @@
         0 0 20px rgba(255, 110, 199, 0.4),
         inset 0 0 20px rgba(200, 162, 216, 0.2);
       border-radius: 1.5rem;
-    }
-    
-    .blinking-dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, rgba(255, 110, 199, 1), rgba(255, 110, 199, 0.6));
-      border-radius: 50%;
-      animation: dotBlink 1.5s ease-in-out infinite;
-      box-shadow: 0 0 12px rgba(255, 110, 199, 0.7),
-                  0 0 24px rgba(200, 162, 216, 0.3);
-    }
-    
-    @keyframes dotBlink {
-      0%, 100% { 
-        opacity: 1; 
-        transform: scale(1);
-      }
-      50% { 
-        opacity: 0.5; 
-        transform: scale(0.85);
-      }
     }
     
     .arcade-frame {
@@ -323,48 +418,9 @@
       font-weight: 500;
     }
     
-    .steampunk-badge::before {
-      content: '✦';
-      position: absolute;
-      left: -12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1rem;
-      color: rgba(255, 110, 199, 0.8);
-      animation: sparkle 2s ease-in-out infinite;
-    }
-    
-    @keyframes sparkle {
-      0%, 100% { 
-        opacity: 1; 
-        transform: translateY(-50%) scale(1) rotate(0deg);
-      }
-      50% { 
-        opacity: 0.7; 
-        transform: translateY(-50%) scale(1.1) rotate(180deg);
-      }
-    }
-    
     /* ポップな装飾 */
     .japanese-steampunk {
       position: relative;
-    }
-    
-    .japanese-steampunk::before {
-      content: '✨';
-      position: absolute;
-      top: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      opacity: 0.3;
-      animation: float 3s ease-in-out infinite;
-      z-index: -1;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-8px); }
     }
     
     .comic-bubble {
@@ -454,14 +510,27 @@
   </style>
 </head>
 <body class="text-white antialiased">
+  <!-- ローディング画面（一時的に無効化 - デザインは保持） -->
+  <!--
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+      <div class="loading-logo">soi24</div>
+      <div class="loading-text">Loading<span class="loading-dots"></span></div>
+      <div class="loading-progress">
+        <div class="loading-progress-bar" id="progressBar"></div>
+      </div>
+      <div class="loading-percentage" id="progressPercentage">0%</div>
+    </div>
+  </div>
+  -->
   <!-- レトロフューチャー背景要素 -->
   <div class="mechanical-grid"></div>
   <div class="scanlines"></div>
   
   <div class="relative min-h-screen overflow-hidden">
-    <header class="relative z-10 max-w-6xl mx-auto px-6 pt-10 flex items-center justify-between">
+    <header class="fixed top-0 left-0 right-0 z-50 max-w-6xl mx-auto px-6 pt-4 pb-4 flex items-center justify-between" style="background: transparent;">
       <div class="flex flex-col">
-        <span class="font-gothic text-xs uppercase tracking-[0.4em] font-medium neon-blink" style="color: #ff6ec7;">soi24</span>
+        <span class="font-gothic text-xs uppercase tracking-[0.4em] font-medium" style="color: #ff6ec7;">soi24</span>
         <span class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.9);">Retro-Future Studio</span>
       </div>
       <nav class="font-gothic flex gap-6 text-sm font-medium">
@@ -471,98 +540,134 @@
       </nav>
     </header>
 
-    <main class="relative z-10 px-6">
+    <main class="relative z-10 px-6" style="padding-top: 80px;">
       <section class="max-w-5xl mx-auto pt-20 pb-24 text-center" id="hero">
-        <div class="fade-ready" data-observe>
-          <p class="font-mono text-xs tracking-[0.5em] uppercase mb-6 font-medium neon-blink" style="color: #ff6ec7;">soi24.com<span class="blinking-dot ml-2"></span></p>
+        <div>
+          <p class="font-mono text-xs tracking-[0.5em] uppercase mb-6 font-medium intro-reveal" style="color: #ff6ec7;">soi24.com</p>
           <h1 class="mb-8">
-            <span class="block mb-3 comic-text" style="font-size: clamp(2rem, 5vw, 3.5rem);">Retro Future Studio</span>
-            <span class="block mt-2 neon-blink-cyan" style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-family: 'Poppins', 'Quicksand', sans-serif; color: #a8e6cf;">Small Web Tools, AI-Assisted Development</span>
+            <span class="block mb-3 comic-text intro-reveal" style="font-size: clamp(2rem, 5vw, 3.5rem);">Retro Future Studio</span>
+            <span class="block mt-2 intro-reveal" style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-family: 'Poppins', 'Quicksand', sans-serif; color: #a8e6cf;">Small Web Tools, AI-Assisted Development</span>
           </h1>
-          <p class="max-w-3xl mx-auto leading-relaxed text-base md:text-lg tracking-wide mt-8" style="color: rgba(255, 255, 255, 0.8);">
+          <p class="max-w-3xl mx-auto leading-relaxed text-base md:text-lg tracking-wide mt-8 intro-reveal" style="color: rgba(255, 255, 255, 0.8);">
             一瞬のひらめきが息づきはじめる。AI と紡いで、そっとカタチへ。
           </p>
         </div>
       </section>
 
       <section id="projects" class="max-w-6xl mx-auto py-20">
-        <div class="fade-ready" data-observe>
+        <div>
           <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
             <div class="japanese-steampunk">
               <p class="font-mono text-xs uppercase tracking-[0.5em] mb-4 font-medium steampunk-badge" style="color: #ff6ec7;">Projects</p>
               <h2 class="text-3xl md:text-4xl comic-text">Vibe Coding Arsenal</h2>
             </div>
-            <p class="md:max-w-xl leading-relaxed text-sm tracking-wide" style="color: rgba(255, 255, 255, 0.9);">
+            <p class="md:max-w-xl leading-relaxed text-sm tracking-wide scroll-reveal" style="color: rgba(255, 255, 255, 0.9);">
               本サイトでは、AI と共に構築したプロトタイプやツール類を公開している。開発プロセスは明確性、機能的な十分性、不要な複雑化の回避を重視する。The development process emphasizes clarity, functional sufficiency, and avoidance of unnecessary complexity.
             </p>
           </div>
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(255, 110, 199, 0.2);" onmouseover="this.style.borderColor='rgba(255, 110, 199, 0.5)'" onmouseout="this.style.borderColor='rgba(255, 110, 199, 0.2)'">
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
-                <span class="font-mono text-xs font-semibold tracking-wider" style="color: #ff6ec7;">01</span>
+          <div class="flex flex-col gap-8">
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(255, 110, 199, 0.2);" onmouseover="this.style.borderColor='rgba(255, 110, 199, 0.5)'" onmouseout="this.style.borderColor='rgba(255, 110, 199, 0.2)'">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="space-y-3 md:w-64">
+                  <div class="flex items-center justify-between">
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
+                    <span class="font-mono text-xs font-semibold tracking-wider" style="color: #ff6ec7;">01</span>
+                  </div>
+                  <h3 class="text-2xl comic-text">Easy Ecomap JP</h3>
+                </div>
+                <div class="flex-1">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">無料でオンライン上でエコマップを作成できるWebツール。ソーシャルワーカーや支援職の方々が、クライアントの環境を視覚化するための直感的なインターフェースを提供。</p>
+                  <a href="https://ecomap.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(255, 110, 199, 0.6); color: #ff6ec7;" onmouseover="this.style.background='rgba(255, 110, 199, 0.1)'" onmouseout="this.style.background='transparent'">
+                    View
+                    <span aria-hidden="true" class="inline-block font-mono" style="color: #ff6ec7;">→</span>
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl mb-4 comic-text">Easy Ecomap JP</h3>
-              <p class="mb-6 leading-relaxed text-sm tracking-wide" style="color: rgba(255, 255, 255, 0.8);">無料でオンライン上でエコマップを作成できるWebツール。ソーシャルワーカーや支援職の方々が、クライアントの環境を視覚化するための直感的なインターフェースを提供。</p>
-              <a href="https://ecomap.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(255, 110, 199, 0.6); color: #ff6ec7;" onmouseover="this.style.background='rgba(255, 110, 199, 0.1)'" onmouseout="this.style.background='transparent'">
-                View
-                <span aria-hidden="true" class="inline-block font-mono" style="color: #ff6ec7;">→</span>
-              </a>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(200, 162, 216, 0.2);" onmouseover="this.style.borderColor='rgba(200, 162, 216, 0.5)'" onmouseout="this.style.borderColor='rgba(200, 162, 216, 0.2)'">
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
-                <span class="font-mono text-xs font-semibold tracking-wider" style="color: #c8a2d8;">02</span>
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(200, 162, 216, 0.2);" onmouseover="this.style.borderColor='rgba(200, 162, 216, 0.5)'" onmouseout="this.style.borderColor='rgba(200, 162, 216, 0.2)'">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="space-y-3 md:w-64">
+                  <div class="flex items-center justify-between">
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
+                    <span class="font-mono text-xs font-semibold tracking-wider" style="color: #c8a2d8;">02</span>
+                  </div>
+                  <h3 class="text-2xl comic-text">Easy Genogram JP</h3>
+                </div>
+                <div class="flex-1">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">無料で簡単に家系図を作成できるWebツール。家族関係を視覚的に表現し、保存・読み込み機能で継続的な記録管理をサポート。</p>
+                  <a href="https://genogram.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(200, 162, 216, 0.6); color: #c8a2d8;" onmouseover="this.style.background='rgba(200, 162, 216, 0.1)'" onmouseout="this.style.background='transparent'">
+                    View
+                    <span aria-hidden="true" class="inline-block font-mono" style="color: #c8a2d8;">→</span>
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl mb-4 comic-text">Easy Genogram JP</h3>
-              <p class="mb-6 leading-relaxed text-sm tracking-wide" style="color: rgba(255, 255, 255, 0.8);">無料で簡単に家系図を作成できるWebツール。家族関係を視覚的に表現し、保存・読み込み機能で継続的な記録管理をサポート。</p>
-              <a href="https://genogram.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(200, 162, 216, 0.6); color: #c8a2d8;" onmouseover="this.style.background='rgba(200, 162, 216, 0.1)'" onmouseout="this.style.background='transparent'">
-                View
-                <span aria-hidden="true" class="inline-block font-mono" style="color: #c8a2d8;">→</span>
-              </a>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out" style="border: 1px solid rgba(168, 230, 207, 0.2);" onmouseover="this.style.borderColor='rgba(168, 230, 207, 0.5)'" onmouseout="this.style.borderColor='rgba(168, 230, 207, 0.2)'">
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Website</span>
-                <span class="font-mono text-xs font-semibold tracking-wider" style="color: #a8e6cf;">03</span>
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(110, 207, 246, 0.2);" onmouseover="this.style.borderColor='rgba(110, 207, 246, 0.5)'" onmouseout="this.style.borderColor='rgba(110, 207, 246, 0.2)'">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="space-y-3 md:w-64">
+                  <div class="flex items-center justify-between">
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
+                    <span class="font-mono text-xs font-semibold tracking-wider" style="color: #6ecff6;">03</span>
+                  </div>
+                  <h3 class="text-2xl comic-text">BF Calc</h3>
+                </div>
+                <div class="flex-1">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">bitFlyer の取引手数料を瞬時に計算できる軽量ツール。金額と BTC 数量を入力するだけで、手数料差引後の受取額を算出し、リアルタイム価格とコピー機能で素早い転記にも対応。</p>
+                  <a href="https://bfcalc.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(110, 207, 246, 0.6); color: #6ecff6;" onmouseover="this.style.background='rgba(110, 207, 246, 0.1)'" onmouseout="this.style.background='transparent'">
+                    View
+                    <span aria-hidden="true" class="inline-block font-mono" style="color: #6ecff6;">→</span>
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl mb-4 comic-text">Machinohiroba.com</h3>
-              <p class="mb-6 leading-relaxed text-sm tracking-wide" style="color: rgba(255, 255, 255, 0.8);">NPO法人街のひろばの公式サイト。埼玉県三芳町の学習支援・居場所づくりを提供する無料学習支援教室の情報を発信するWebサイト。</p>
-              <a href="https://machinohiroba.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(168, 230, 207, 0.6); color: #a8e6cf;" onmouseover="this.style.background='rgba(168, 230, 207, 0.1)'" onmouseout="this.style.background='transparent'">
-                View
-                <span aria-hidden="true" class="inline-block font-mono" style="color: #a8e6cf;">→</span>
-              </a>
+            </article>
+            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(168, 230, 207, 0.2);" onmouseover="this.style.borderColor='rgba(168, 230, 207, 0.5)'" onmouseout="this.style.borderColor='rgba(168, 230, 207, 0.2)'">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="space-y-3 md:w-64">
+                  <div class="flex items-center justify-between">
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Website</span>
+                    <span class="font-mono text-xs font-semibold tracking-wider" style="color: #a8e6cf;">04</span>
+                  </div>
+                  <h3 class="text-2xl comic-text">Machinohiroba.com</h3>
+                </div>
+                <div class="flex-1">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6" style="color: rgba(255, 255, 255, 0.8);">NPO法人街のひろばの公式サイト。埼玉県三芳町の学習支援・居場所づくりを提供する無料学習支援教室の情報を発信するWebサイト。</p>
+                  <a href="https://machinohiroba.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(168, 230, 207, 0.6); color: #a8e6cf;" onmouseover="this.style.background='rgba(168, 230, 207, 0.1)'" onmouseout="this.style.background='transparent'">
+                    View
+                    <span aria-hidden="true" class="inline-block font-mono" style="color: #a8e6cf;">→</span>
+                  </a>
+                </div>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
       <section id="about" class="max-w-4xl mx-auto py-20">
-        <div class="fade-ready" data-observe>
+        <div>
           <p class="font-mono text-xs uppercase tracking-[0.5em] mb-5 font-medium steampunk-badge" style="color: #ff6ec7;">About / Profile</p>
           <h2 class="text-3xl md:text-4xl mb-8 comic-text">
             <span class="font-mono japanese-accent" style="color: #ff6ec7;">soi24</span>
           </h2>
           <div class="space-y-6" style="color: rgba(255, 255, 255, 0.8);">
-            <p class="leading-relaxed text-base tracking-wide">
+            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
               soi24 is an independent creator working on small web tools and AI-assisted prototypes.<br>
               My work focuses on clarity of purpose, functional sufficiency, and avoiding unnecessary complexity in small-scale development.
             </p>
-            <p class="leading-relaxed text-base tracking-wide">
+            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
               soi24 は、AI を活用して小規模な Web ツールやアプリを開発している個人制作者です。<br>
               専門的なプログラミング経験はありませんが、AI を使用した試行と検証を積み重ねることで、実装可能な領域を広げてきました。
             </p>
-            <p class="leading-relaxed text-base tracking-wide">
+            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
               開発においては、機能が過度に複雑化しないこと、目的が明確であること、操作性が明瞭であることを重視しています。<br>
               本サイトでは、AI と共に構築したプロトタイプや動作検証用のツール類を公開しています。
             </p>
-            <p class="leading-relaxed text-base tracking-wide">
+            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
               現在の主な活動は以下の通りです：<br>
               ・Web サービスおよびアプリケーションの小規模開発<br>
               ・AI を組み込んだプロトタイプの制作<br>
               ・初学者を対象とした、AI を用いた制作プロセスのレクチャー
             </p>
-            <p class="leading-relaxed text-base tracking-wide">
+            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
               I work with individuals or teams who want to explore AI-assisted development or create projects of similar scope, as long as the scope aligns with what I can support.
             </p>
           </div>
@@ -594,22 +699,180 @@
     </footer>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const targets = document.querySelectorAll('[data-observe]');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-visible');
-            observer.unobserve(entry.target);
-          }
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // ヒーロー領域のイントロアニメーション
+        const introTargets = document.querySelectorAll('.intro-reveal');
+        if (introTargets.length) {
+          introTargets.forEach((target, index) => {
+            target.style.transitionDelay = `${index * 0.12}s`;
+          });
+          setTimeout(() => {
+            requestAnimationFrame(() => {
+              introTargets.forEach(target => target.classList.add('intro-visible'));
+            });
+          }, 120);
+        }
+        
+        // 統合されたIntersectionObserver（data-observeとscroll-revealを1つで管理）
+        let unifiedObserver = null;
+        let observerInitialized = false;
+      
+      const initUnifiedObserver = () => {
+        if (observerInitialized) return;
+        
+        // data-observe要素とscroll-reveal要素を取得
+        const dataObserveTargets = document.querySelectorAll('[data-observe]');
+        const scrollRevealTargets = document.querySelectorAll('.scroll-reveal');
+        
+        if (dataObserveTargets.length === 0 && scrollRevealTargets.length === 0) return;
+        
+        unifiedObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // data-observe要素の場合
+              if (entry.target.hasAttribute('data-observe')) {
+                entry.target.classList.add('fade-visible');
+              }
+              // scroll-reveal要素の場合
+              if (entry.target.classList.contains('scroll-reveal')) {
+                entry.target.classList.add('revealed');
+              }
+              unifiedObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -20px 0px'
         });
-      }, { threshold: 0.2 });
+        
+        // data-observe要素を初期化
+        dataObserveTargets.forEach(target => {
+          target.classList.add('fade-ready');
+          unifiedObserver.observe(target);
+        });
+        
+        // scroll-reveal要素を初期化
+        scrollRevealTargets.forEach(target => {
+          target.classList.remove('revealed');
+          unifiedObserver.observe(target);
+        });
+        
+        observerInitialized = true;
+      };
+      
+      // 初期化
+      if (document.readyState === 'complete') {
+        setTimeout(initUnifiedObserver, 100);
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(initUnifiedObserver, 100);
+        }, { once: true });
+        setTimeout(initUnifiedObserver, 100);
+      }
+      
 
-      targets.forEach(target => {
-        target.classList.add('fade-ready');
-        observer.observe(target);
+      // ローディング画面の管理（一時的に無効化 - デザインは保持）
+      /*
+      const loadingScreen = document.getElementById('loadingScreen');
+      const progressBar = document.getElementById('progressBar');
+      const progressPercentage = document.getElementById('progressPercentage');
+      
+      let progress = 0;
+      let progressInterval;
+      
+      // 進捗を更新する関数
+      const updateProgress = (value) => {
+        progress = Math.min(100, Math.max(0, value));
+        if (progressBar) {
+          progressBar.style.width = progress + '%';
+        }
+        if (progressPercentage) {
+          progressPercentage.textContent = Math.floor(progress) + '%';
+        }
+      };
+      
+      // 画像の読み込みを監視
+      const images = document.querySelectorAll('img');
+      let loadedImages = 0;
+      const totalImages = images.length;
+      
+      const checkImageLoad = () => {
+        loadedImages++;
+        const imageProgress = (loadedImages / Math.max(totalImages, 1)) * 30; // 画像読み込みは30%まで
+        updateProgress(imageProgress);
+      };
+      
+      images.forEach(img => {
+        if (img.complete) {
+          checkImageLoad();
+        } else {
+          img.addEventListener('load', checkImageLoad);
+          img.addEventListener('error', checkImageLoad);
+        }
       });
+      
+      // 擬似進捗（残り70%をスムーズに増やす）
+      const simulateProgress = () => {
+        const startProgress = progress;
+        const targetProgress = 100;
+        const duration = 2000; // 2秒で100%まで
+        const startTime = Date.now();
+        
+        const animate = () => {
+          const elapsed = Date.now() - startTime;
+          const newProgress = startProgress + ((targetProgress - startProgress) * Math.min(1, elapsed / duration));
+          updateProgress(newProgress);
+          
+          if (newProgress < targetProgress) {
+            requestAnimationFrame(animate);
+          } else {
+            updateProgress(100);
+            setTimeout(hideLoading, 500);
+          }
+        };
+        
+        // DOMContentLoadedまたは画像読み込みが進んだら開始
+        if (document.readyState === 'complete') {
+          setTimeout(() => {
+            updateProgress(30);
+            animate();
+          }, 300);
+        } else {
+          window.addEventListener('load', () => {
+            setTimeout(() => {
+              updateProgress(30);
+              animate();
+            }, 300);
+          });
+        }
+      };
+      
+      // 初期進捗（10%）
+      updateProgress(10);
+      
+      // DOMContentLoadedで30%まで
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          updateProgress(30);
+          simulateProgress();
+        });
+      } else {
+        simulateProgress();
+      }
+      */
+      
+      // ローディング画面の非表示（一時的に無効化）
+      /*
+      const hideLoading = () => {
+        if (loadingScreen) {
+          loadingScreen.classList.add('hidden');
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 600);
+        }
+      };
+      */
     });
   </script>
 </body>
