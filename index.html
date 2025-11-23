@@ -58,11 +58,20 @@
     @media (max-width: 640px) {
       body::before {
         position: fixed;
-        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100svh;
         background-attachment: scroll;
         background-position: center center, center center, center top;
-        background-size: auto, auto, cover;
+        background-size: auto, auto, 120vw auto;
         transform: translateZ(0);
+      }
+
+      @supports (height: 100lvh) {
+        body::before {
+          height: 100lvh;
+        }
       }
     }
 
