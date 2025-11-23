@@ -57,12 +57,12 @@
 
     @media (max-width: 640px) {
       body::before {
-        position: absolute;
+        position: fixed;
         inset: 0;
         background-attachment: scroll;
         background-position: center center, center center, center top;
         background-size: auto, auto, cover;
-        transform: none;
+        transform: translateZ(0);
       }
     }
 
