@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>soi24 | Retro-Future Experiments</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;900&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;900&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <style>
     :root {
@@ -22,25 +25,25 @@
       --bg-glass: rgba(255, 255, 255, 0.05);
       --bg-parallax-offset: 0px;
     }
-    
+
     body {
       font-family: 'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
       line-height: 1.8;
       font-weight: 300;
       background: radial-gradient(ellipse at top, rgba(255, 110, 199, 0.15), transparent 50%),
-                  radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
-                  radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
-                  linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
+        radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
+        linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
       background-attachment: scroll;
       min-height: 100vh;
       position: relative;
     }
-    
+
     body::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: 
+      background-image:
         linear-gradient(135deg, rgba(5, 12, 25, 0.55), rgba(8, 15, 28, 0.5)),
         linear-gradient(180deg, rgba(3, 8, 18, 0.6), rgba(5, 10, 22, 0.55)),
         url('./img/background.png');
@@ -60,7 +63,7 @@
         background-size: auto, auto, auto 100%;
       }
     }
-    
+
     /* スクロールアニメーション用のスタイル */
     .scroll-reveal {
       opacity: 0;
@@ -68,31 +71,31 @@
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
       will-change: opacity, transform;
     }
-    
+
     .scroll-reveal.revealed {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .intro-reveal {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.9s ease-out, transform 0.9s ease-out;
       will-change: opacity, transform;
     }
-    
+
     .intro-reveal.intro-visible {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .loading-screen {
       position: fixed;
       inset: 0;
       background: radial-gradient(ellipse at top, rgba(255, 110, 199, 0.15), transparent 50%),
-                  radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
-                  radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
-                  linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
+        radial-gradient(ellipse at bottom right, rgba(200, 162, 216, 0.12), transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(168, 230, 207, 0.1), transparent 50%),
+        linear-gradient(135deg, #0a0a12 0%, #1a0f2e 50%, #0a0a12 100%);
       z-index: 9999;
       display: flex;
       align-items: center;
@@ -100,17 +103,17 @@
       opacity: 1;
       transition: opacity 0.6s ease-out;
     }
-    
+
     .loading-screen.hidden {
       opacity: 0;
       pointer-events: none;
     }
-    
+
     .loading-content {
       text-align: center;
       color: rgba(255, 255, 255, 0.9);
     }
-    
+
     .loading-logo {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-size: 2.5rem;
@@ -122,16 +125,19 @@
       margin-bottom: 1rem;
       animation: pulse 2s ease-in-out infinite;
     }
-    
+
     @keyframes pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         opacity: 1;
       }
+
       50% {
         opacity: 0.7;
       }
     }
-    
+
     .loading-text {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-size: 0.9rem;
@@ -139,7 +145,7 @@
       letter-spacing: 0.1em;
       margin-bottom: 2rem;
     }
-    
+
     .loading-progress {
       width: 300px;
       height: 4px;
@@ -150,7 +156,7 @@
       margin: 0 auto;
       box-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
     }
-    
+
     .loading-progress-bar {
       height: 100%;
       background: linear-gradient(90deg, #ff6ec7, #c8a2d8, #a8e6cf);
@@ -160,16 +166,19 @@
       box-shadow: 0 0 20px rgba(255, 110, 199, 0.6);
       animation: progressGlow 2s ease-in-out infinite;
     }
-    
+
     @keyframes progressGlow {
-      0%, 100% {
+
+      0%,
+      100% {
         box-shadow: 0 0 20px rgba(255, 110, 199, 0.6);
       }
+
       50% {
         box-shadow: 0 0 30px rgba(255, 110, 199, 0.9), 0 0 40px rgba(200, 162, 216, 0.5);
       }
     }
-    
+
     .loading-percentage {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85rem;
@@ -177,76 +186,84 @@
       margin-top: 1rem;
       letter-spacing: 0.1em;
     }
-    
+
     .loading-dots {
       display: inline-block;
       animation: loadingDots 1.5s steps(4, end) infinite;
     }
-    
+
     @keyframes loadingDots {
-      0%, 20% {
+
+      0%,
+      20% {
         content: '';
       }
+
       40% {
         content: '.';
       }
+
       60% {
         content: '..';
       }
-      80%, 100% {
+
+      80%,
+      100% {
         content: '...';
       }
     }
-    
+
     .loading-dots::after {
       content: '';
       animation: loadingDots 1.5s steps(4, end) infinite;
     }
-    
+
     /* 明朝体: エレガントな要素に */
     .font-mincho {
       font-family: 'Shippori Mincho', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
       letter-spacing: 0.05em;
       font-weight: 400;
     }
-    
+
     /* 丸みを帯びたサンセリフ: UI要素に */
     .font-gothic {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       letter-spacing: 0.04em;
       font-weight: 400;
     }
-    
+
     /* モノスペース: ラベルやタグ、数字に */
     .font-mono {
       font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
       letter-spacing: 0.05em;
       font-weight: 400;
     }
-    
+
     /* 見出しのスタイリング: 丸みを帯びたポップなフォント */
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 600;
       letter-spacing: 0.02em;
       line-height: 1.4;
     }
-    
+
     h1 {
       font-weight: 700;
       letter-spacing: 0.03em;
     }
-    
+
     h2 {
       font-weight: 600;
       letter-spacing: 0.02em;
     }
-    
+
     h3 {
       font-weight: 500;
       letter-spacing: 0.01em;
     }
-    
+
     /* プロジェクト説明の日本語はサンセリフに戻す */
     .project-description {
       font-family: 'Poppins', 'Quicksand', sans-serif;
@@ -262,25 +279,25 @@
       line-height: 1.9;
       font-weight: 400;
     }
-    
+
     #hero {
       min-height: calc(100vh - 140px);
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    
-    #hero > div {
+
+    #hero>div {
       width: 100%;
     }
-    
+
     /* ナビゲーションはタイトルと同じ丸サンセリフで */
     nav {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 400;
       letter-spacing: 0.05em;
     }
-    
+
     /* モバイルメニューボタン */
     .menu-toggle {
       display: none;
@@ -292,7 +309,7 @@
       padding: 8px;
       z-index: 100;
     }
-    
+
     .menu-toggle span {
       width: 24px;
       height: 2px;
@@ -300,19 +317,19 @@
       transition: all 0.3s ease-out;
       border-radius: 2px;
     }
-    
+
     .menu-toggle.active span:nth-child(1) {
       transform: rotate(45deg) translate(6px, 6px);
     }
-    
+
     .menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
-    
+
     .menu-toggle.active span:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
-    
+
     /* モバイルメニュー */
     .mobile-menu {
       display: none;
@@ -330,12 +347,12 @@
       transform: translateY(-100%);
       transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     }
-    
+
     .mobile-menu.active {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .mobile-menu nav {
       display: flex;
       flex-direction: column;
@@ -343,43 +360,43 @@
       padding: 2rem;
       align-items: flex-start;
     }
-    
+
     .mobile-menu nav a {
       font-size: 1.25rem;
       padding: 0.5rem 0;
       width: 100%;
       border-bottom: 1px solid rgba(255, 110, 199, 0.2);
     }
-    
+
     /* デスクトップでは通常のナビゲーションを表示、モバイルでは非表示 */
     .desktop-nav {
       display: flex;
     }
-    
+
     @media (max-width: 768px) {
       .desktop-nav {
         display: none !important;
       }
-      
+
       .menu-toggle {
         display: flex !important;
       }
-      
+
       .mobile-menu {
         display: block;
       }
     }
-    
+
     @media (min-width: 769px) {
       .mobile-menu {
         display: none !important;
       }
-      
+
       .menu-toggle {
         display: none !important;
       }
     }
-    
+
     /* ヘッダーのスタイル（フッターと同じデザイン） */
     header {
       position: relative;
@@ -388,34 +405,37 @@
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     header.header-hidden {
       opacity: 0;
       transform: translateY(-100%);
       pointer-events: none;
     }
-    
+
     header.semi-transparent {
       opacity: 0.5;
     }
-    
+
     header:hover {
       opacity: 1 !important;
     }
-    
+
     /* ラベルやタグはモノスペースで */
-    .label, .tag {
+    .label,
+    .tag {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 400;
       letter-spacing: 0.08em;
     }
-    
+
     /* ボタンもタイトルフォントでエッジを揃える */
-    button, a.btn-glow {
+    button,
+    a.btn-glow {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 500;
       letter-spacing: 0.05em;
     }
+
     .project-card::after {
       content: '';
       position: absolute;
@@ -426,55 +446,58 @@
       pointer-events: none;
       border-radius: 1.5rem;
     }
+
     .project-card:hover::after {
       opacity: 0.3;
     }
+
     .btn-glow {
-      box-shadow: 0 0 25px rgba(255, 110, 199, 0.5), 
-                  0 0 50px rgba(200, 162, 216, 0.3),
-                  0 4px 20px rgba(255, 110, 199, 0.2);
+      box-shadow: 0 0 25px rgba(255, 110, 199, 0.5),
+        0 0 50px rgba(200, 162, 216, 0.3),
+        0 4px 20px rgba(255, 110, 199, 0.2);
       transition: all 0.3s ease-out;
     }
+
     .btn-glow:hover {
-      box-shadow: 0 0 30px rgba(255, 110, 199, 0.6), 
-                  0 0 60px rgba(200, 162, 216, 0.4),
-                  0 6px 25px rgba(255, 110, 199, 0.25);
+      box-shadow: 0 0 30px rgba(255, 110, 199, 0.6),
+        0 0 60px rgba(200, 162, 216, 0.4),
+        0 6px 25px rgba(255, 110, 199, 0.25);
       transform: translateY(-2px);
     }
+
     .fade-ready {
       opacity: 0;
       transform: translateY(24px);
     }
+
     .fade-visible {
       opacity: 1;
       transform: translateY(0);
       transition: opacity 700ms ease-out, transform 700ms ease-out;
     }
-    
+
     /* レトロフューチャー要素 */
-    
+
     .scanlines {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 110, 199, 0.02),
-        rgba(255, 110, 199, 0.02) 1px,
-        transparent 1px,
-        transparent 4px
-      );
+      background: repeating-linear-gradient(0deg,
+          rgba(255, 110, 199, 0.02),
+          rgba(255, 110, 199, 0.02) 1px,
+          transparent 1px,
+          transparent 4px);
       pointer-events: none;
       z-index: 1000;
       opacity: 0.3;
     }
-    
+
     .mechanical-grid {
       position: fixed;
       inset: 0;
-      background-image: 
+      background-image:
         linear-gradient(rgba(255, 110, 199, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 110, 199, 0.05) 1px, transparent 1px);
       background-size: 80px 80px, 80px 80px;
@@ -482,29 +505,29 @@
       z-index: 0;
       opacity: 0.3;
     }
-    
+
     /* ドット絵風の装飾要素 */
     .pixel-decoration {
       image-rendering: pixelated;
       image-rendering: -moz-crisp-edges;
       image-rendering: crisp-edges;
     }
-    
+
     .retro-border {
       border: 2px solid;
       border-image: linear-gradient(135deg, rgba(255, 110, 199, 0.6), rgba(200, 162, 216, 0.5), rgba(168, 230, 207, 0.4)) 1;
-      box-shadow: 
+      box-shadow:
         0 0 20px rgba(255, 110, 199, 0.4),
         inset 0 0 20px rgba(200, 162, 216, 0.2);
       border-radius: 1.5rem;
     }
-    
+
     .arcade-frame {
       position: relative;
       background: rgba(10, 10, 18, 0.7);
       backdrop-filter: blur(12px);
     }
-    
+
     .arcade-frame::before {
       content: '';
       position: absolute;
@@ -512,18 +535,18 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.4), 
-        rgba(200, 162, 216, 0.3), 
-        rgba(168, 230, 207, 0.2));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 0.4),
+          rgba(200, 162, 216, 0.3),
+          rgba(168, 230, 207, 0.2));
       border-radius: 1.5rem;
       z-index: -1;
       opacity: 0.5;
       filter: blur(4px);
     }
-    
+
     /* ポップなレトロフューチャー要素 */
-    
+
     .comic-text {
       font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif;
       font-weight: 600;
@@ -531,10 +554,10 @@
       line-height: 1.4;
       overflow-wrap: break-word;
       word-wrap: break-word;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 1), 
-        rgba(200, 162, 216, 1), 
-        rgba(168, 230, 207, 1));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 1),
+          rgba(200, 162, 216, 1),
+          rgba(168, 230, 207, 1));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -546,10 +569,10 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       line-height: 1.2;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 1), 
-        rgba(200, 162, 216, 1), 
-        rgba(168, 230, 207, 1));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 1),
+          rgba(200, 162, 216, 1),
+          rgba(168, 230, 207, 1));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -563,18 +586,18 @@
       font-feature-settings: 'palt' 1;
       display: inline-block;
     }
-    
+
     .steampunk-badge {
       position: relative;
       display: inline-block;
       padding: 0.5rem 1.2rem;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.2), 
-        rgba(200, 162, 216, 0.15), 
-        rgba(168, 230, 207, 0.1));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 0.2),
+          rgba(200, 162, 216, 0.15),
+          rgba(168, 230, 207, 0.1));
       border: 2px solid rgba(255, 110, 199, 0.5);
       border-radius: 2rem;
-      box-shadow: 
+      box-shadow:
         inset 0 0 15px rgba(255, 110, 199, 0.2),
         0 0 20px rgba(255, 110, 199, 0.3),
         0 4px 15px rgba(200, 162, 216, 0.2);
@@ -584,26 +607,26 @@
       letter-spacing: 0.08em;
       font-weight: 500;
     }
-    
+
     /* ポップな装飾 */
     .japanese-steampunk {
       position: relative;
     }
-    
+
     .comic-bubble {
       position: relative;
       padding: 1.2rem 1.8rem;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.15), 
-        rgba(200, 162, 216, 0.12), 
-        rgba(168, 230, 207, 0.1));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 0.15),
+          rgba(200, 162, 216, 0.12),
+          rgba(168, 230, 207, 0.1));
       border: 3px solid rgba(255, 110, 199, 0.6);
       border-radius: 1.5rem;
-      box-shadow: 
+      box-shadow:
         0 0 30px rgba(255, 110, 199, 0.4),
         inset 0 0 30px rgba(200, 162, 216, 0.15);
     }
-    
+
     .comic-bubble::after {
       content: '';
       position: absolute;
@@ -616,48 +639,48 @@
       border-top: 18px solid rgba(255, 110, 199, 0.6);
       filter: drop-shadow(0 0 15px rgba(255, 110, 199, 0.5));
     }
-    
+
     .mechanical-pattern {
-      background-image: 
-        repeating-linear-gradient(45deg, 
-          transparent, 
-          transparent 20px, 
-          rgba(255, 110, 199, 0.03) 20px, 
+      background-image:
+        repeating-linear-gradient(45deg,
+          transparent,
+          transparent 20px,
+          rgba(255, 110, 199, 0.03) 20px,
           rgba(255, 110, 199, 0.03) 40px);
       position: absolute;
       inset: 0;
       pointer-events: none;
       opacity: 0.15;
     }
-    
+
     .japanese-accent::before {
       content: '【';
       color: rgba(255, 110, 199, 0.8);
       margin-right: 0.2em;
       text-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
     }
-    
+
     .japanese-accent::after {
       content: '】';
       color: rgba(255, 110, 199, 0.8);
       margin-left: 0.2em;
       text-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
     }
-    
+
     .comic-panel {
       position: relative;
       padding: 2rem;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.1), 
-        rgba(200, 162, 216, 0.08), 
-        rgba(168, 230, 207, 0.06));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 0.1),
+          rgba(200, 162, 216, 0.08),
+          rgba(168, 230, 207, 0.06));
       border: 3px solid rgba(255, 110, 199, 0.6);
       border-radius: 1.5rem;
-      box-shadow: 
+      box-shadow:
         0 0 40px rgba(255, 110, 199, 0.4),
         inset 0 0 40px rgba(200, 162, 216, 0.2);
     }
-    
+
     .comic-panel::before {
       content: '';
       position: absolute;
@@ -665,10 +688,10 @@
       left: -3px;
       right: -3px;
       bottom: -3px;
-      background: linear-gradient(135deg, 
-        rgba(255, 110, 199, 0.5),
-        rgba(200, 162, 216, 0.4),
-        rgba(168, 230, 207, 0.3));
+      background: linear-gradient(135deg,
+          rgba(255, 110, 199, 0.5),
+          rgba(200, 162, 216, 0.4),
+          rgba(168, 230, 207, 0.3));
       border-radius: 1.5rem;
       z-index: -1;
       opacity: 0.5;
@@ -676,6 +699,7 @@
     }
   </style>
 </head>
+
 <body class="text-white antialiased">
   <!-- ローディング画面（一時的に無効化 - デザインは保持） -->
   <!--
@@ -693,17 +717,28 @@
   <!-- レトロフューチャー背景要素 -->
   <div class="mechanical-grid"></div>
   <div class="scanlines"></div>
-  
+
   <div class="relative min-h-screen overflow-hidden">
-    <header class="fixed top-0 left-0 right-0 z-50 w-full px-6 pt-2.5 pb-2.5 flex items-center justify-between" style="background: rgba(10, 10, 18, 0.75); border-bottom: 1px solid rgba(255, 110, 199, 0.2);">
+    <header class="fixed top-0 left-0 right-0 z-50 w-full px-6 pt-2.5 pb-2.5 flex items-center justify-between"
+      style="background: rgba(10, 10, 18, 0.75); border-bottom: 1px solid rgba(255, 110, 199, 0.2);">
       <div class="flex flex-col">
         <span class="font-gothic text-xs uppercase tracking-[0.4em] font-medium" style="color: #ff6ec7;">soi24</span>
-        <span class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.9);">Retro-Future Studio</span>
+        <span class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.9);">Retro-Future
+          Studio</span>
       </div>
       <nav class="desktop-nav font-gothic flex gap-6 text-sm font-medium">
-        <a href="#projects" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#ff6ec7'; this.style.textShadow='0 0 15px rgba(255, 110, 199, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Projects</a>
-        <a href="#about" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#c8a2d8'; this.style.textShadow='0 0 15px rgba(200, 162, 216, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">About</a>
-        <a href="#contact" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.8);" onmouseover="this.style.color='#a8e6cf'; this.style.textShadow='0 0 15px rgba(168, 230, 207, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Contact</a>
+        <a href="#projects" class="transition-all duration-300 ease-out tracking-wide"
+          style="color: rgba(255, 255, 255, 0.8);"
+          onmouseover="this.style.color='#ff6ec7'; this.style.textShadow='0 0 15px rgba(255, 110, 199, 0.6)'"
+          onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Projects</a>
+        <a href="#about" class="transition-all duration-300 ease-out tracking-wide"
+          style="color: rgba(255, 255, 255, 0.8);"
+          onmouseover="this.style.color='#c8a2d8'; this.style.textShadow='0 0 15px rgba(200, 162, 216, 0.6)'"
+          onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">About</a>
+        <a href="#contact" class="transition-all duration-300 ease-out tracking-wide"
+          style="color: rgba(255, 255, 255, 0.8);"
+          onmouseover="this.style.color='#a8e6cf'; this.style.textShadow='0 0 15px rgba(168, 230, 207, 0.6)'"
+          onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'; this.style.textShadow='none'">Contact</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く">
         <span></span>
@@ -711,108 +746,174 @@
         <span></span>
       </button>
     </header>
-    
+
     <!-- モバイルメニュー -->
     <div class="mobile-menu" id="mobileMenu">
       <nav class="font-gothic">
-        <a href="#projects" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">Projects</a>
-        <a href="#about" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">About</a>
-        <a href="#contact" class="transition-all duration-300 ease-out tracking-wide" style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">Contact</a>
+        <a href="#projects" class="transition-all duration-300 ease-out tracking-wide"
+          style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">Projects</a>
+        <a href="#about" class="transition-all duration-300 ease-out tracking-wide"
+          style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">About</a>
+        <a href="#contact" class="transition-all duration-300 ease-out tracking-wide"
+          style="color: rgba(255, 255, 255, 0.9);" onclick="closeMobileMenu()">Contact</a>
       </nav>
     </div>
 
     <main class="relative z-10 px-6" style="padding-top: 70px;">
       <section class="max-w-5xl mx-auto pt-20 pb-24 text-center" id="hero">
         <div>
-          <p class="font-mono text-xs tracking-[0.5em] uppercase mb-6 font-medium intro-reveal" style="color: #ff6ec7;">soi24.com</p>
+          <p class="font-mono text-xs tracking-[0.5em] uppercase mb-6 font-medium intro-reveal" style="color: #ff6ec7;">
+            soi24.com</p>
           <h1 class="mb-8">
-            <span class="block mb-3 hero-title intro-reveal" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">Retro Future Studio</span>
-            <span class="block mt-2 intro-reveal" style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif; color: #a8e6cf; letter-spacing: 0.08em;">Small Web Tools, AI-Assisted Development</span>
+            <span class="block mb-3 hero-title intro-reveal" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">Retro
+              Future Studio</span>
+            <span class="block mt-2 intro-reveal"
+              style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-family: 'Comfortaa', 'Quicksand', 'Poppins', sans-serif; color: #a8e6cf; letter-spacing: 0.08em;">Small
+              Web Tools, AI-Assisted Development</span>
           </h1>
-          <p class="max-w-3xl mx-auto leading-relaxed text-base md:text-lg tracking-wide mt-8 intro-reveal" style="color: rgba(255, 255, 255, 0.8);">
-            <span class="hero-tagline">一瞬のひらめきが、AIの技術で息づきはじめる。</span>
+          <p class="max-w-3xl mx-auto leading-relaxed text-base md:text-lg tracking-wide mt-8 intro-reveal"
+            style="color: rgba(255, 255, 255, 0.8);">
+            <span class="hero-tagline">一瞬のひらめきが、AIのチカラで息づきはじめる。</span>
           </p>
         </div>
+      </section>
+
       </section>
 
       <section id="projects" class="max-w-6xl mx-auto py-20">
         <div>
           <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
             <div class="japanese-steampunk">
-              <p class="font-mono text-xs uppercase tracking-[0.5em] mb-4 font-medium steampunk-badge" style="color: #ff6ec7;">Projects</p>
+              <p class="font-mono text-xs uppercase tracking-[0.5em] mb-4 font-medium steampunk-badge"
+                style="color: #ff6ec7;">Projects</p>
               <h2 class="text-3xl md:text-4xl comic-text">Vibe Coding Arsenal</h2>
             </div>
-            <p class="md:max-w-xl leading-relaxed text-sm tracking-wide scroll-reveal" style="color: rgba(255, 255, 255, 0.9);">
-              本サイトでは、AI と共に構築したプロトタイプやツール類を公開している。開発プロセスは明確性、機能的な十分性、不要な複雑化の回避を重視する。The development process emphasizes clarity, functional sufficiency, and avoidance of unnecessary complexity.
-            </p>
+            <div class="md:max-w-xl pl-6 border-l-2 border-pink-500/50 scroll-reveal">
+              <p class="leading-relaxed text-base font-mincho text-white/90 mb-4">
+                アイデアを、動く形にする。<br>
+                ここでは、AI（バイブコーディング）で設計したツールやサイトを、ポートフォリオとして公開しています。<br>
+                未来の道具を、誰の手にも。<br>
+                誰もが、少し未来の使い心地に触れられる場所へ。
+              </p>
+              <p class="text-xs text-white/50 font-gothic tracking-wide">
+                Bring ideas to life.<br>
+                Here, I showcase tools and websites designed through AI-powered vibe coding.<br>
+                Future tools, for every hand.<br>
+                A place where anyone can experience a touch of tomorrow.
+              </p>
+            </div>
           </div>
           <div class="flex flex-col gap-8">
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(255, 110, 199, 0.2);" onmouseover="this.style.borderColor='rgba(255, 110, 199, 0.5)'" onmouseout="this.style.borderColor='rgba(255, 110, 199, 0.2)'">
+            <article
+              class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal"
+              style="border: 1px solid rgba(255, 110, 199, 0.2);"
+              onmouseover="this.style.borderColor='rgba(255, 110, 199, 0.5)'"
+              onmouseout="this.style.borderColor='rgba(255, 110, 199, 0.2)'">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="space-y-3 md:w-64">
+                <div class="space-y-3 md:w-72">
                   <div class="flex items-center justify-between">
-                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium"
+                      style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
                     <span class="font-mono text-xs font-semibold tracking-wider" style="color: #ff6ec7;">01</span>
                   </div>
                   <h3 class="text-2xl comic-text">Easy Ecomap JP</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">無料でオンライン上でエコマップを作成できるWebツール。ソーシャルワーカーや支援職の方々が、クライアントの環境を視覚化するための直感的なインターフェースを提供。</p>
-                  <a href="https://ecomap.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(255, 110, 199, 0.6); color: #ff6ec7;" onmouseover="this.style.background='rgba(255, 110, 199, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description"
+                    style="color: rgba(255, 255, 255, 0.8);">
+                    無料でオンライン上でエコマップを作成できるWebツール。ソーシャルワーカーや支援職の方々が、クライアントの環境を視覚化するための直感的なインターフェースを提供。</p>
+                  <a href="https://ecomap.soi24.com" target="_blank" rel="noopener noreferrer"
+                    class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide"
+                    style="border: 1px solid rgba(255, 110, 199, 0.6); color: #ff6ec7;"
+                    onmouseover="this.style.background='rgba(255, 110, 199, 0.1)'"
+                    onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #ff6ec7;">→</span>
                   </a>
                 </div>
               </div>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(200, 162, 216, 0.2);" onmouseover="this.style.borderColor='rgba(200, 162, 216, 0.5)'" onmouseout="this.style.borderColor='rgba(200, 162, 216, 0.2)'">
+            <article
+              class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal"
+              style="border: 1px solid rgba(200, 162, 216, 0.2);"
+              onmouseover="this.style.borderColor='rgba(200, 162, 216, 0.5)'"
+              onmouseout="this.style.borderColor='rgba(200, 162, 216, 0.2)'">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="space-y-3 md:w-64">
+                <div class="space-y-3 md:w-72">
                   <div class="flex items-center justify-between">
-                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium"
+                      style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
                     <span class="font-mono text-xs font-semibold tracking-wider" style="color: #c8a2d8;">02</span>
                   </div>
                   <h3 class="text-2xl comic-text">Easy Genogram JP</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">無料で簡単に家系図を作成できるWebツール。家族関係を視覚的に表現し、保存・読み込み機能で継続的な記録管理をサポート。</p>
-                  <a href="https://genogram.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(200, 162, 216, 0.6); color: #c8a2d8;" onmouseover="this.style.background='rgba(200, 162, 216, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description"
+                    style="color: rgba(255, 255, 255, 0.8);">無料で簡単に家系図を作成できるWebツール。家族関係を視覚的に表現し、保存・読み込み機能で継続的な記録管理をサポート。
+                  </p>
+                  <a href="https://genogram.soi24.com" target="_blank" rel="noopener noreferrer"
+                    class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide"
+                    style="border: 1px solid rgba(200, 162, 216, 0.6); color: #c8a2d8;"
+                    onmouseover="this.style.background='rgba(200, 162, 216, 0.1)'"
+                    onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #c8a2d8;">→</span>
                   </a>
                 </div>
               </div>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(110, 207, 246, 0.2);" onmouseover="this.style.borderColor='rgba(110, 207, 246, 0.5)'" onmouseout="this.style.borderColor='rgba(110, 207, 246, 0.2)'">
+            <article
+              class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal"
+              style="border: 1px solid rgba(110, 207, 246, 0.2);"
+              onmouseover="this.style.borderColor='rgba(110, 207, 246, 0.5)'"
+              onmouseout="this.style.borderColor='rgba(110, 207, 246, 0.2)'">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="space-y-3 md:w-64">
+                <div class="space-y-3 md:w-72">
                   <div class="flex items-center justify-between">
-                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium"
+                      style="color: rgba(255, 255, 255, 0.6);">Web Tool</span>
                     <span class="font-mono text-xs font-semibold tracking-wider" style="color: #6ecff6;">03</span>
                   </div>
                   <h3 class="text-2xl comic-text">BF Calc</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">bitFlyer の取引手数料を瞬時に計算できる軽量ツール。金額と BTC 数量を入力するだけで、手数料差引後の受取額を算出し、リアルタイム価格とコピー機能で素早い転記にも対応。</p>
-                  <a href="https://bfcalc.soi24.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(110, 207, 246, 0.6); color: #6ecff6;" onmouseover="this.style.background='rgba(110, 207, 246, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description"
+                    style="color: rgba(255, 255, 255, 0.8);">bitFlyer の取引手数料を瞬時に計算できる軽量ツール。金額と BTC
+                    数量を入力するだけで、手数料差引後の受取額を算出し、リアルタイム価格とコピー機能で素早い転記にも対応。</p>
+                  <a href="https://bfcalc.soi24.com" target="_blank" rel="noopener noreferrer"
+                    class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide"
+                    style="border: 1px solid rgba(110, 207, 246, 0.6); color: #6ecff6;"
+                    onmouseover="this.style.background='rgba(110, 207, 246, 0.1)'"
+                    onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #6ecff6;">→</span>
                   </a>
                 </div>
               </div>
             </article>
-            <article class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal" style="border: 1px solid rgba(168, 230, 207, 0.2);" onmouseover="this.style.borderColor='rgba(168, 230, 207, 0.5)'" onmouseout="this.style.borderColor='rgba(168, 230, 207, 0.2)'">
+            <article
+              class="project-card arcade-frame relative rounded-2xl p-6 transition-all duration-300 ease-out scroll-reveal"
+              style="border: 1px solid rgba(168, 230, 207, 0.2);"
+              onmouseover="this.style.borderColor='rgba(168, 230, 207, 0.5)'"
+              onmouseout="this.style.borderColor='rgba(168, 230, 207, 0.2)'">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="space-y-3 md:w-64">
+                <div class="space-y-3 md:w-72">
                   <div class="flex items-center justify-between">
-                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium" style="color: rgba(255, 255, 255, 0.6);">Website</span>
+                    <span class="font-mono text-xs uppercase tracking-[0.4em] font-medium"
+                      style="color: rgba(255, 255, 255, 0.6);">Website</span>
                     <span class="font-mono text-xs font-semibold tracking-wider" style="color: #a8e6cf;">04</span>
                   </div>
                   <h3 class="text-2xl comic-text">Machinohiroba.com</h3>
                 </div>
                 <div class="flex-1">
-                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description" style="color: rgba(255, 255, 255, 0.8);">NPO法人街のひろばの公式サイト。埼玉県三芳町の学習支援・居場所づくりを提供する無料学習支援教室の情報を発信するWebサイト。</p>
-                  <a href="https://machinohiroba.com" target="_blank" rel="noopener noreferrer" class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide" style="border: 1px solid rgba(168, 230, 207, 0.6); color: #a8e6cf;" onmouseover="this.style.background='rgba(168, 230, 207, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <p class="leading-relaxed text-sm tracking-wide mb-6 project-description"
+                    style="color: rgba(255, 255, 255, 0.8);">
+                    NPO法人街のひろばの公式サイト。埼玉県三芳町の学習支援・居場所づくりを提供する無料学習支援教室の情報を発信するWebサイト。</p>
+                  <a href="https://machinohiroba.com" target="_blank" rel="noopener noreferrer"
+                    class="font-gothic btn-glow relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out tracking-wide"
+                    style="border: 1px solid rgba(168, 230, 207, 0.6); color: #a8e6cf;"
+                    onmouseover="this.style.background='rgba(168, 230, 207, 0.1)'"
+                    onmouseout="this.style.background='transparent'">
                     View
                     <span aria-hidden="true" class="inline-block font-mono" style="color: #a8e6cf;">→</span>
                   </a>
@@ -825,89 +926,96 @@
 
       <section id="about" class="max-w-4xl mx-auto py-20">
         <div>
-          <p class="font-mono text-xs uppercase tracking-[0.5em] mb-5 font-medium steampunk-badge" style="color: #ff6ec7;">About / Profile</p>
+          <p class="font-mono text-xs uppercase tracking-[0.5em] mb-5 font-medium steampunk-badge"
+            style="color: #ff6ec7;">About / Profile</p>
           <h2 class="text-3xl md:text-4xl mb-8 comic-text">
             <span class="font-mono japanese-accent" style="color: #ff6ec7;">soi24</span>
           </h2>
           <div class="space-y-6" style="color: rgba(255, 255, 255, 0.8);">
-            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
-              soi24 is an independent creator working on small web tools and AI-assisted prototypes.<br>
-              My work focuses on clarity of purpose, functional sufficiency, and avoiding unnecessary complexity in small-scale development.
+            <p class="leading-relaxed text-base font-mincho tracking-wide scroll-reveal mb-4">
+              AIによるバイブコーディングを用いて、Webツールやサイトの設計を行っています。<br>
+              シンプルで明瞭、余計な複雑さを持たないもの。それでいて、未来を感じる洗練されたデザイン。<br>
+              本サイトでは、そうした設計思想にもとづいた作品のポートフォリオを公開しています。<br>
+              制作のご相談は、お問い合わせフォームからお気軽にどうぞ。
             </p>
-            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
-              soi24 は、AI を活用して小規模な Web ツールやアプリを開発している個人制作者です。<br>
-              専門的なプログラミング経験はありませんが、AI を使用した試行と検証を積み重ねることで、実装可能な領域を広げてきました。
-            </p>
-            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
-              開発においては、機能が過度に複雑化しないこと、目的が明確であること、操作性が明瞭であることを重視しています。<br>
-              本サイトでは、AI と共に構築したプロトタイプや動作検証用のツール類を公開しています。
-            </p>
-            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
-              現在の主な活動は以下の通りです：<br>
-              ・Web サービスおよびアプリケーションの小規模開発<br>
-              ・AI を組み込んだプロトタイプの制作<br>
-              ・初学者を対象とした、AI を用いた制作プロセスのレクチャー
-            </p>
-            <p class="leading-relaxed text-base tracking-wide scroll-reveal">
-              I work with individuals or teams who want to explore AI-assisted development or create projects of similar scope, as long as the scope aligns with what I can support.
+            <p class="leading-relaxed text-xs text-white/50 tracking-wide scroll-reveal font-gothic">
+              I design web tools and sites using AI-powered vibe coding.<br>
+              I value simplicity, clarity, and avoiding unnecessary complexity—while still pursuing a refined,
+              future-leaning design aesthetic.<br>
+              This site showcases a portfolio based on that design philosophy.<br>
+              For project inquiries, please reach out via the contact form.
             </p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer id="contact" class="relative z-10 mt-12" style="background: rgba(10, 10, 18, 0.6); border-top: 1px solid rgba(255, 110, 199, 0.2);">
+    <footer id="contact" class="relative z-10 mt-12"
+      style="background: rgba(10, 10, 18, 0.6); border-top: 1px solid rgba(255, 110, 199, 0.2);">
       <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-5">
-          <a href="#" class="transition-all duration-300 ease-out" aria-label="GitHub" style="color: rgba(255, 255, 255, 0.7);" onmouseover="this.style.color='#ff6ec7'; this.style.textShadow='0 0 15px rgba(255, 110, 199, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'; this.style.textShadow='none'">
+          <a href="#" class="transition-all duration-300 ease-out" aria-label="GitHub"
+            style="color: rgba(255, 255, 255, 0.7);"
+            onmouseover="this.style.color='#ff6ec7'; this.style.textShadow='0 0 15px rgba(255, 110, 199, 0.6)'"
+            onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'; this.style.textShadow='none'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
-              <path d="M12 2a10 10 0 0 0-3.16 19.48c.5.1.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34a2.65 2.65 0 0 0-1.11-1.46c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.91.83 2.13 2.13 0 0 1 .63-1.33c-2.22-.25-4.55-1.11-4.55-4.93a3.86 3.86 0 0 1 1-2.68 3.58 3.58 0 0 1 .1-2.64s.84-.27 2.75 1a9.43 9.43 0 0 1 5 0c1.91-1.3 2.75-1 2.75-1a3.58 3.58 0 0 1 .1 2.64 3.86 3.86 0 0 1 1 2.68c0 3.83-2.34 4.68-4.57 4.93a2.39 2.39 0 0 1 .68 1.86v2.76c0 .27.18.59.69.48A10 10 0 0 0 12 2Z" />
+              <path
+                d="M12 2a10 10 0 0 0-3.16 19.48c.5.1.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34a2.65 2.65 0 0 0-1.11-1.46c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.91.83 2.13 2.13 0 0 1 .63-1.33c-2.22-.25-4.55-1.11-4.55-4.93a3.86 3.86 0 0 1 1-2.68 3.58 3.58 0 0 1 .1-2.64s.84-.27 2.75 1a9.43 9.43 0 0 1 5 0c1.91-1.3 2.75-1 2.75-1a3.58 3.58 0 0 1 .1 2.64 3.86 3.86 0 0 1 1 2.68c0 3.83-2.34 4.68-4.57 4.93a2.39 2.39 0 0 1 .68 1.86v2.76c0 .27.18.59.69.48A10 10 0 0 0 12 2Z" />
             </svg>
           </a>
-          <a href="#" class="transition-all duration-300 ease-out" aria-label="Twitter" style="color: rgba(255, 255, 255, 0.7);" onmouseover="this.style.color='#c8a2d8'; this.style.textShadow='0 0 15px rgba(200, 162, 216, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'; this.style.textShadow='none'">
+          <a href="#" class="transition-all duration-300 ease-out" aria-label="Twitter"
+            style="color: rgba(255, 255, 255, 0.7);"
+            onmouseover="this.style.color='#c8a2d8'; this.style.textShadow='0 0 15px rgba(200, 162, 216, 0.6)'"
+            onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'; this.style.textShadow='none'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
-              <path d="M20 4.01 13.25 11l7.07 8.99h-2.78l-5.3-6.7-6.07 6.7H2.9l7.5-8.27L3.7 4.01h2.78l4.76 6.02 5.46-6.02H20Z" />
+              <path
+                d="M20 4.01 13.25 11l7.07 8.99h-2.78l-5.3-6.7-6.07 6.7H2.9l7.5-8.27L3.7 4.01h2.78l4.76 6.02 5.46-6.02H20Z" />
             </svg>
           </a>
-          <a href="mailto:soi24@example.com" class="transition-all duration-300 ease-out" aria-label="Contact" style="color: rgba(255, 255, 255, 0.7);" onmouseover="this.style.color='#a8e6cf'; this.style.textShadow='0 0 15px rgba(168, 230, 207, 0.6)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'; this.style.textShadow='none'">
+          <a href="mailto:soi24@example.com" class="transition-all duration-300 ease-out" aria-label="Contact"
+            style="color: rgba(255, 255, 255, 0.7);"
+            onmouseover="this.style.color='#a8e6cf'; this.style.textShadow='0 0 15px rgba(168, 230, 207, 0.6)'"
+            onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'; this.style.textShadow='none'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
-              <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm8 5.17L5.53 7.77 4.47 9.23 12 13.83l7.53-4.6-1.06-1.46L12 11.17Z" />
+              <path
+                d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm8 5.17L5.53 7.77 4.47 9.23 12 13.83l7.53-4.6-1.06-1.46L12 11.17Z" />
             </svg>
           </a>
         </div>
-        <p class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.6);">© <span class="font-mono" style="color: #ff6ec7;">soi24</span></p>
+        <p class="font-gothic text-sm font-light tracking-wide" style="color: rgba(255, 255, 255, 0.6);">© <span
+            class="font-mono" style="color: #ff6ec7;">soi24</span></p>
       </div>
     </footer>
   </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // ヒーロー領域のイントロアニメーション
-        const introTargets = document.querySelectorAll('.intro-reveal');
-        if (introTargets.length) {
-          introTargets.forEach((target, index) => {
-            target.style.transitionDelay = `${index * 0.12}s`;
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ヒーロー領域のイントロアニメーション
+      const introTargets = document.querySelectorAll('.intro-reveal');
+      if (introTargets.length) {
+        introTargets.forEach((target, index) => {
+          target.style.transitionDelay = `${index * 0.12}s`;
+        });
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            introTargets.forEach(target => target.classList.add('intro-visible'));
           });
-          setTimeout(() => {
-            requestAnimationFrame(() => {
-              introTargets.forEach(target => target.classList.add('intro-visible'));
-            });
-          }, 120);
-        }
-        
-        // 統合されたIntersectionObserver（data-observeとscroll-revealを1つで管理）
-        let unifiedObserver = null;
-        let observerInitialized = false;
-      
+        }, 120);
+      }
+
+      // 統合されたIntersectionObserver（data-observeとscroll-revealを1つで管理）
+      let unifiedObserver = null;
+      let observerInitialized = false;
+
       const initUnifiedObserver = () => {
         if (observerInitialized) return;
-        
+
         // data-observe要素とscroll-reveal要素を取得
         const dataObserveTargets = document.querySelectorAll('[data-observe]');
         const scrollRevealTargets = document.querySelectorAll('.scroll-reveal');
-        
+
         if (dataObserveTargets.length === 0 && scrollRevealTargets.length === 0) return;
-        
+
         unifiedObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -926,22 +1034,22 @@
           threshold: 0.1,
           rootMargin: '0px 0px -20px 0px'
         });
-        
+
         // data-observe要素を初期化
         dataObserveTargets.forEach(target => {
           target.classList.add('fade-ready');
           unifiedObserver.observe(target);
         });
-        
+
         // scroll-reveal要素を初期化
         scrollRevealTargets.forEach(target => {
           target.classList.remove('revealed');
           unifiedObserver.observe(target);
         });
-        
+
         observerInitialized = true;
       };
-      
+
       // 初期化
       if (document.readyState === 'complete') {
         setTimeout(initUnifiedObserver, 100);
@@ -951,7 +1059,7 @@
         }, { once: true });
         setTimeout(initUnifiedObserver, 100);
       }
-      
+
 
       // 擬似パララックス用の背景制御
       const initParallaxBackground = () => {
@@ -962,13 +1070,13 @@
         let scrollHandler = null;
         let ticking = false;
         let lastKnownScrollY = window.scrollY;
-        
+
         const updateParallax = () => {
           const offset = lastKnownScrollY * parallaxFactor;
           root.style.setProperty('--bg-parallax-offset', `${offset}px`);
           ticking = false;
         };
-        
+
         const enableParallax = () => {
           if (scrollHandler) return;
           updateParallax();
@@ -981,7 +1089,7 @@
           };
           window.addEventListener('scroll', scrollHandler, { passive: true });
         };
-        
+
         const disableParallax = () => {
           if (scrollHandler) {
             window.removeEventListener('scroll', scrollHandler);
@@ -990,7 +1098,7 @@
           ticking = false;
           root.style.setProperty('--bg-parallax-offset', '0px');
         };
-        
+
         const handleParallaxState = () => {
           if (prefersReducedMotionQuery.matches || mobileQuery.matches) {
             disableParallax();
@@ -998,29 +1106,29 @@
             enableParallax();
           }
         };
-        
+
         prefersReducedMotionQuery.addEventListener('change', handleParallaxState);
         mobileQuery.addEventListener('change', handleParallaxState);
         handleParallaxState();
       };
-      
+
       initParallaxBackground();
 
       // ヘッダーのスクロールフェード制御
       const initHeaderScrollFade = () => {
         const header = document.querySelector('header');
         if (!header) return;
-        
+
         const idleDelay = 2000; // スクロール停止後2秒で再表示
         let idleTimer = null;
         let isHidden = false;
-        
+
         const showHeader = () => {
           header.classList.remove('header-hidden');
           header.classList.remove('semi-transparent');
           isHidden = false;
         };
-        
+
         const hideHeader = () => {
           if (window.scrollY < 20) {
             showHeader();
@@ -1030,7 +1138,7 @@
           header.classList.remove('semi-transparent');
           isHidden = true;
         };
-        
+
         const scheduleShow = () => {
           if (idleTimer) {
             clearTimeout(idleTimer);
@@ -1039,32 +1147,32 @@
             showHeader();
           }, idleDelay);
         };
-        
+
         const handleScroll = () => {
           hideHeader();
           scheduleShow();
         };
-        
+
         header.addEventListener('mouseenter', () => {
           showHeader();
           scheduleShow();
         });
-        
+
         window.addEventListener('scroll', handleScroll, { passive: true });
-        
+
         // 初期状態は表示しつつ、スクロール停止後の再表示を予約
         scheduleShow();
       };
-      
+
       initHeaderScrollFade();
 
       // モバイルメニューの開閉機能
       const initMobileMenu = () => {
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+
         if (!menuToggle || !mobileMenu) return;
-        
+
         const toggleMenu = () => {
           const isActive = mobileMenu.classList.contains('active');
           if (isActive) {
@@ -1077,26 +1185,26 @@
             document.body.style.overflow = 'hidden';
           }
         };
-        
+
         const closeMenu = () => {
           mobileMenu.classList.remove('active');
           menuToggle.classList.remove('active');
           document.body.style.overflow = '';
         };
-        
+
         menuToggle.addEventListener('click', toggleMenu);
-        
+
         // メニュー外をクリックで閉じる
         mobileMenu.addEventListener('click', (e) => {
           if (e.target === mobileMenu) {
             closeMenu();
           }
         });
-        
+
         // グローバル関数として定義（onclickから呼び出せるように）
         window.closeMobileMenu = closeMenu;
       };
-      
+
       initMobileMenu();
 
       // ローディング画面の管理（一時的に無効化 - デザインは保持）
@@ -1188,7 +1296,7 @@
         simulateProgress();
       }
       */
-      
+
       // ローディング画面の非表示（一時的に無効化）
       /*
       const hideLoading = () => {
@@ -1203,4 +1311,5 @@
     });
   </script>
 </body>
+
 </html>
